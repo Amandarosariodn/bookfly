@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xZH77ph6H4A=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\amanda.rosario\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0\\microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "C:\\Users\\amanda.rosario\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
