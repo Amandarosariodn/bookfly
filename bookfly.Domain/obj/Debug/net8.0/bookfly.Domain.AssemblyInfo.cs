@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bookfly.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cebc3ae072038d6d361b9f3b3664d3038d70a92a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ef4ad0d688d87b98c44c5ed85b78f9e7b41072d")]
 [assembly: System.Reflection.AssemblyProductAttribute("bookfly.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bookfly.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
