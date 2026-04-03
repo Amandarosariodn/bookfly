@@ -1,0 +1,16 @@
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.csproj.AssemblyReference.cache
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.AssemblyInfoInputs.cache
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.AssemblyInfo.cs
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.csproj.CoreCompileInputs.cache
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.sourcelink.json
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\bin\Debug\net8.0\bookfly.Infra.deps.json
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\bin\Debug\net8.0\bookfly.Infra.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\bin\Debug\net8.0\bookfly.Infra.pdb
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\bin\Debug\net8.0\bookfly.Domain.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\bin\Debug\net8.0\bookfly.Domain.pdb
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly..4C8D6C0B.Up2Date
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\refint\bookfly.Infra.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\bookfly.Infra.pdb
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Infra\obj\Debug\net8.0\ref\bookfly.Infra.dll

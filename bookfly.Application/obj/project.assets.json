@@ -1,0 +1,110 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "bookfly.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/bookfly.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/bookfly.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "bookfly.Domain/1.0.0": {
+      "type": "project",
+      "path": "../bookfly.Domain/bookfly.Domain.csproj",
+      "msbuildProject": "../bookfly.Domain/bookfly.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "bookfly.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\amanda.rosario\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\bookfly.Application.csproj",
+      "projectName": "bookfly.Application",
+      "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\bookfly.Application.csproj",
+      "packagesPath": "C:\\Users\\amanda.rosario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\amanda.rosario\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget-repo.autoglass.com.br/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj": {
+              "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
