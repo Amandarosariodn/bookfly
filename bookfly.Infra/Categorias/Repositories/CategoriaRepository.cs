@@ -17,24 +17,38 @@ namespace bookfly.Infra.Categorias.Repositories
             _session = session;
         }
 
-        public Task AtualizarAsync(Categoria categoria, CancellationToken cancellationToken)
+        public async Task EditarAsync(Categoria categoria, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
+            if (categoria == null)
+                throw new ArgumentNullException(nameof(categoria));
+
+            await _session.UpdateAsync(categoria, cancellationToken);
+
         }
 
-        // public IQueryable<Categoria> Filtrar()
-        // {
-        
-        // }
-
-        public Task InserirAsync(Categoria categoria, CancellationToken cancellationToken)
+        public IQueryable<Categoria> Filtrar()
         {
-            throw new NotImplementedException();
+            return _session.Query<Categoria>();
         }
 
-        public Task<Categoria?> RecuperarPorId(int categoriaId, CancellationToken cancellationToken)
+        public async Task InserirAsync(Categoria categoria, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (categoria == null)
+                throw new ArgumentNullException(nameof(categoria));
+
+            await _session.SaveAsync(categoria, cancellationToken);
+        }
+
+    
+
+        public async Task<Categoria?> RecuperarPorIdAsync(int categoriaId, CancellationToken cancellationToken)
+        {
+
+            return await _session.GetAsync<Categoria>(
+                            categoriaId,
+                            cancellationToken);
+
         }
     }
 }

@@ -6,13 +6,10 @@ namespace bookfly.Domain.Categorias.Repositories
     public interface ICategoriasRepository
     {
 
-        // IQueryable<Categoria> Filtrar();
-        Task<Categoria?> RecuperarPorId(int categoriaId, CancellationToken cancellationToken);
-
+        IQueryable<Categoria> Filtrar();
         Task InserirAsync(Categoria categoria, CancellationToken cancellationToken);
-        Task AtualizarAsync(Categoria categoria, CancellationToken cancellationToken);
-
-
+        Task EditarAsync(Categoria categoria, CancellationToken cancellationToken);
+        Task<Categoria?> RecuperarPorIdAsync(int categoriaId, CancellationToken cancellationToken);
 
 
     }
