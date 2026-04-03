@@ -8,7 +8,7 @@ namespace bookfly.Domain.Categorias.Services.Interfaces
         Task<Categoria> InserirCategoriaAsync(InserirCategoriaCommand comando, CancellationToken cancellationToken);
         Task<Categoria> ValidarAsync(int id, CancellationToken cancellationToken);
 
-        Task<Categoria> EditarCategoriaAsync(EditarCategoriaCommand comando, CancellationToken cancellationToken);
+        Task<Categoria> EditarCategoriaAsync(EditarCategoriaCommand comando, int id, CancellationToken cancellationToken);
         Categoria Instanciar(InserirCategoriaCommand comando);
         Task MudarSituacaoAsync(int id, CancellationToken cancellationToken);
 
