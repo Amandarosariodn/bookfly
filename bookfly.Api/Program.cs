@@ -1,44 +1,79 @@
+using System.Reflection;
+using Mapster;
+using MapsterMapper;
+using bookfly.Application.Shared.UnitOfWork;
+using bookfly.Application.Categorias.Services;
+using bookfly.Application.Categorias.Services.Interfaces;
+using bookfly.Domain.Categorias.Repositories;
+using bookfly.Infra.Categorias.Repositories;
+using bookfly.Infra.NHibernate;
+using bookfly.Infra.UnitOfWork;
+using bookfly.Domain.Categorias.Services.Interfaces;
+using bookfly.Domain.Categorias.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+#region Controllers
+builder.Services.AddControllers();
+#endregion
+
+#region Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+#endregion
+
+#region Mapster
+var mapsterConfig = TypeAdapterConfig.GlobalSettings;
+mapsterConfig.Scan(Assembly.Load("bookfly.Application"));
+
+builder.Services.AddSingleton(mapsterConfig);
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+#endregion
+
+#region NHibernate
+builder.Services.AddSingleton<NHibernate.ISessionFactory>(_ =>
+{
+    return NHibernateSessionFactory.Create(
+        builder.Configuration.GetConnectionString("DefaultConnection")!
+    );
+});
+
+
+builder.Services.AddScoped<NHibernate.ISession>(sp =>
+{
+    var factory = sp.GetRequiredService<NHibernate.ISessionFactory>();
+    return factory.OpenSession();
+});
+
+#endregion
+
+#region Unit of Work
+builder.Services.AddScoped<IUnitOfWork, NHibernateUnitOfWork>();
+#endregion
+builder.Services.AddScoped<ICategoriasService, CategoriasService>();
+
+#region Repositories
+builder.Services.AddScoped<ICategoriasRepository, CategoriaRepository>();
+#endregion
+
+#region Application Services
+builder.Services.AddScoped<ICategoriasAppService, CategoriasAppService>();
+#endregion
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+#region Middleware pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+// app.UseAuthorization();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+app.MapControllers();
+#endregion
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

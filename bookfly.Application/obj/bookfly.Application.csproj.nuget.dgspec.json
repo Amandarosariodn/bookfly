@@ -48,6 +48,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Mapster": {
+              "target": "Package",
+              "version": "[10.0.6, )"
+            },
+            "Mapster.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

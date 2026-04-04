@@ -11,6 +11,7 @@
           "FluentNHibernate": "3.4.1",
           "MySql.Data": "8.4.0",
           "NHibernate": "5.6.0",
+          "bookfly.Application": "1.0.0",
           "bookfly.Domain": "1.0.0"
         },
         "runtime": {
@@ -86,6 +87,45 @@
           "lib/net6.0/K4os.Hash.xxHash.dll": {
             "assemblyVersion": "1.0.8.0",
             "fileVersion": "1.0.8.0"
+          }
+        }
+      },
+      "Mapster/10.0.6": {
+        "dependencies": {
+          "Mapster.Core": "10.0.6"
+        },
+        "runtime": {
+          "lib/net8.0/Mapster.dll": {
+            "assemblyVersion": "10.0.6.0",
+            "fileVersion": "10.0.6.0"
+          }
+        }
+      },
+      "Mapster.Core/10.0.6": {
+        "runtime": {
+          "lib/netstandard2.0/Mapster.Core.dll": {
+            "assemblyVersion": "10.0.6.0",
+            "fileVersion": "10.0.6.0"
+          }
+        }
+      },
+      "Mapster.DependencyInjection/10.0.6": {
+        "dependencies": {
+          "Mapster": "10.0.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/Mapster.DependencyInjection.dll": {
+            "assemblyVersion": "10.0.6.0",
+            "fileVersion": "10.0.6.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.24.52809"
           }
         }
       },
@@ -295,6 +335,19 @@
           }
         }
       },
+      "bookfly.Application/1.0.0": {
+        "dependencies": {
+          "Mapster": "10.0.6",
+          "Mapster.DependencyInjection": "10.0.6",
+          "bookfly.Domain": "1.0.0"
+        },
+        "runtime": {
+          "bookfly.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "bookfly.Domain/1.0.0": {
         "runtime": {
           "bookfly.Domain.dll": {
@@ -366,6 +419,34 @@
       "sha512": "sha512-Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
+    },
+    "Mapster/10.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wFNXuXzxPzJbpHEVnhx0m0YZwWcE2MPhtcifZ9QM1hvRsv86mBsQkXio74oNQDb7Wa96ThKuUjqYU3mSTMip1w==",
+      "path": "mapster/10.0.6",
+      "hashPath": "mapster.10.0.6.nupkg.sha512"
+    },
+    "Mapster.Core/10.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GzYLzCJBGcnHCU5zh2665uqHb2y2E9d1sWIIIu/K7nK9xU8NQH3hGCYp5pySMdwhJZS1+d7KAOIsrqLBh550EA==",
+      "path": "mapster.core/10.0.6",
+      "hashPath": "mapster.core.10.0.6.nupkg.sha512"
+    },
+    "Mapster.DependencyInjection/10.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rWbTZlOTmVd2qKX/mTJA/CmR3uZSpTGOj3q/XYdT9K8rMNx/eGPbL3s+uh27sSu0DOegokGMdBbD6j3MehPX/g==",
+      "path": "mapster.dependencyinjection/10.0.6",
+      "hashPath": "mapster.dependencyinjection.10.0.6.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+6f2qv2a3dLwd5w6JanPIPs47CxRbnk+ZocMJUhv9NxP88VlOcJYZs9jY+MYSjxvady08bUZn6qgiNh7DadGgg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512"
     },
     "Microsoft.Win32.SystemEvents/4.7.0": {
       "type": "package",
@@ -457,6 +538,11 @@
       "sha512": "sha512-Idgg+mJEyAujqDPzA3APy9dNoyw0YQcNA65GgYjktDRtJ+nvx/hv+J+m6Eax3JJMGEYGy04oc5YNP6ZvQ3Y1vQ==",
       "path": "zstdsharp.port/0.7.1",
       "hashPath": "zstdsharp.port.0.7.1.nupkg.sha512"
+    },
+    "bookfly.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "bookfly.Domain/1.0.0": {
       "type": "project",

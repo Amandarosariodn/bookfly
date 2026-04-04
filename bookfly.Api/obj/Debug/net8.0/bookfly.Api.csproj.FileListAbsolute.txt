@@ -14,7 +14,10 @@ C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\K4os.Compression.LZ4.dll
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\K4os.Compression.LZ4.Streams.dll
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\K4os.Hash.xxHash.dll
-C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Mapster.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Mapster.Core.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Mapster.DependencyInjection.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Api\bin\Debug\net8.0\MySql.Data.dll

@@ -117,6 +117,56 @@
           }
         }
       },
+      "Mapster/10.0.6": {
+        "type": "package",
+        "dependencies": {
+          "Mapster.Core": "10.0.6"
+        },
+        "compile": {
+          "lib/net8.0/Mapster.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Mapster.dll": {}
+        }
+      },
+      "Mapster.Core/10.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Mapster.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Mapster.Core.dll": {}
+        }
+      },
+      "Mapster.DependencyInjection/10.0.6": {
+        "type": "package",
+        "dependencies": {
+          "Mapster": "10.0.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Mapster.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Mapster.DependencyInjection.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -1711,6 +1761,21 @@
           "lib/net7.0/ZstdSharp.dll": {}
         }
       },
+      "bookfly.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Mapster": "10.0.6",
+          "Mapster.DependencyInjection": "10.0.6",
+          "bookfly.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/bookfly.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/bookfly.Application.dll": {}
+        }
+      },
       "bookfly.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -1898,6 +1963,81 @@
         "lib/netstandard2.0/K4os.Hash.xxHash.xml",
         "lib/netstandard2.1/K4os.Hash.xxHash.dll",
         "lib/netstandard2.1/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "Mapster/10.0.6": {
+      "sha512": "wFNXuXzxPzJbpHEVnhx0m0YZwWcE2MPhtcifZ9QM1hvRsv86mBsQkXio74oNQDb7Wa96ThKuUjqYU3mSTMip1w==",
+      "type": "package",
+      "path": "mapster/10.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net10.0/Mapster.dll",
+        "lib/net8.0/Mapster.dll",
+        "lib/net9.0/Mapster.dll",
+        "lib/netstandard2.0/Mapster.dll",
+        "mapster.10.0.6.nupkg.sha512",
+        "mapster.nuspec"
+      ]
+    },
+    "Mapster.Core/10.0.6": {
+      "sha512": "GzYLzCJBGcnHCU5zh2665uqHb2y2E9d1sWIIIu/K7nK9xU8NQH3hGCYp5pySMdwhJZS1+d7KAOIsrqLBh550EA==",
+      "type": "package",
+      "path": "mapster.core/10.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/Mapster.Core.dll",
+        "mapster.core.10.0.6.nupkg.sha512",
+        "mapster.core.nuspec"
+      ]
+    },
+    "Mapster.DependencyInjection/10.0.6": {
+      "sha512": "rWbTZlOTmVd2qKX/mTJA/CmR3uZSpTGOj3q/XYdT9K8rMNx/eGPbL3s+uh27sSu0DOegokGMdBbD6j3MehPX/g==",
+      "type": "package",
+      "path": "mapster.dependencyinjection/10.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net10.0/Mapster.DependencyInjection.dll",
+        "lib/net8.0/Mapster.DependencyInjection.dll",
+        "lib/net9.0/Mapster.DependencyInjection.dll",
+        "lib/netstandard2.0/Mapster.DependencyInjection.dll",
+        "mapster.dependencyinjection.10.0.6.nupkg.sha512",
+        "mapster.dependencyinjection.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+      "sha512": "+6f2qv2a3dLwd5w6JanPIPs47CxRbnk+ZocMJUhv9NxP88VlOcJYZs9jY+MYSjxvady08bUZn6qgiNh7DadGgg==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
@@ -5756,6 +5896,11 @@
         "zstdsharp.port.nuspec"
       ]
     },
+    "bookfly.Application/1.0.0": {
+      "type": "project",
+      "path": "../bookfly.Application/bookfly.Application.csproj",
+      "msbuildProject": "../bookfly.Application/bookfly.Application.csproj"
+    },
     "bookfly.Domain/1.0.0": {
       "type": "project",
       "path": "../bookfly.Domain/bookfly.Domain.csproj",
@@ -5767,6 +5912,7 @@
       "FluentNHibernate >= 3.4.1",
       "MySql.Data >= 8.4.0",
       "NHibernate >= 5.6.0",
+      "bookfly.Application >= 1.0.0",
       "bookfly.Domain >= 1.0.0"
     ]
   },
@@ -5796,6 +5942,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\bookfly.Application.csproj": {
+              "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\bookfly.Application.csproj"
+            },
             "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj": {
               "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj"
             }

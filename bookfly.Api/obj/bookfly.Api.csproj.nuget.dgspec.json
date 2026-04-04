@@ -52,13 +52,13 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Mapster": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[10.0.6, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[10.1.7, )"
             }
           },
           "imports": [
@@ -146,6 +146,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Mapster": {
+              "target": "Package",
+              "version": "[10.0.6, )"
+            },
+            "Mapster.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -277,6 +287,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\bookfly.Application.csproj": {
+                "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Application\\bookfly.Application.csproj"
+              },
               "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj": {
                 "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj"
               }

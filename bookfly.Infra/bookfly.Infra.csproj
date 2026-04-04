@@ -13,5 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\bookfly.Domain\bookfly.Domain.csproj" />
+    <ProjectReference Include="..\bookfly.Application\bookfly.Application.csproj" />
   </ItemGroup>
 </Project>
