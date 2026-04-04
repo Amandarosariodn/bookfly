@@ -1,5 +1,6 @@
 using bookfly.Domain.Categorias.Commands;
 using bookfly.Domain.Categorias.Entities;
+using bookfly.Domain.Categorias.Repositories.Filters;
 
 namespace bookfly.Domain.Categorias.Services.Interfaces
 {
@@ -12,5 +13,6 @@ namespace bookfly.Domain.Categorias.Services.Interfaces
         Categoria Instanciar(InserirCategoriaCommand comando);
         Task MudarSituacaoAsync(int id, CancellationToken cancellationToken);
 
+        Task<List<Categoria>> ListarAsync(CategoriaFiltro categoria, CancellationToken cancellationToken);
     }
 }

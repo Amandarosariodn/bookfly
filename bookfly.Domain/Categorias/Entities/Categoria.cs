@@ -22,7 +22,7 @@ namespace bookfly.Domain.Categorias.Entities
             Ativar();
         }
 
-        public void SetNome(string nome)
+        public virtual void SetNome(string nome)
         {
             if (string.IsNullOrEmpty(nome))
                 throw new Exception("nome não pode ser nulo ou vazio");
@@ -30,7 +30,7 @@ namespace bookfly.Domain.Categorias.Entities
             Nome = nome;
         }
 
-        public void SetDescricao(string descricao)
+        public virtual void SetDescricao(string descricao)
         {
             if (string.IsNullOrEmpty(descricao))
                 throw new Exception("descricao não pode ser nula ou vazia");
@@ -38,7 +38,7 @@ namespace bookfly.Domain.Categorias.Entities
             Descricao = descricao;
         }
 
-        public void SetUrlImagem(string urlImagem)
+        public virtual void SetUrlImagem(string urlImagem)
         {
             if (string.IsNullOrEmpty(urlImagem))
                 throw new Exception("UrlImagem nula ou vazia");
@@ -46,7 +46,7 @@ namespace bookfly.Domain.Categorias.Entities
             UrlImagem = urlImagem;
         }
 
-        public void SetSituacao(AtivoInativoEnum situacao)
+        public virtual void SetSituacao(AtivoInativoEnum situacao)
         {
             if (!Enum.IsDefined(typeof(AtivoInativoEnum), situacao))
                 throw new Exception("Situacao");

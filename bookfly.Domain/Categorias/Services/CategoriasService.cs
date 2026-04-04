@@ -1,6 +1,7 @@
 using bookfly.Domain.Categorias.Commands;
 using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Categorias.Repositories;
+using bookfly.Domain.Categorias.Repositories.Filters;
 using bookfly.Domain.Categorias.Services.Interfaces;
 using bookfly.Domain.Enums;
 
@@ -8,7 +9,7 @@ namespace bookfly.Domain.Categorias.Services
 {
     public class CategoriasService(ICategoriasRepository categoriaRepository) : ICategoriasService
     {
-        public async Task<Categoria> EditarCategoriaAsync(EditarCategoriaCommand comando,int id, CancellationToken cancellationToken)
+        public async Task<Categoria> EditarCategoriaAsync(EditarCategoriaCommand comando, int id, CancellationToken cancellationToken)
         {
             Categoria categoria = await ValidarAsync(id, cancellationToken);
 
@@ -60,6 +61,17 @@ namespace bookfly.Domain.Categorias.Services
                 throw new Exception("Categoria não encontrado");
 
             return categoria;
+        }
+
+        public async Task<List<Categoria>> ListarAsync(CategoriaFiltro categoria, CancellationToken cancellationToken)
+        {
+            var categorias = await categoriaRepository.ListarAsync(categoria, cancellationToken);
+
+            if (categorias == null || !categorias.Any())
+                return new List<Categoria>();
+
+            return categorias ?? new List<Categoria>();
+
         }
     }
 }

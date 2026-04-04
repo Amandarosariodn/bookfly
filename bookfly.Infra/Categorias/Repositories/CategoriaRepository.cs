@@ -2,7 +2,9 @@
 
 using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Categorias.Repositories;
+using bookfly.Domain.Categorias.Repositories.Filters;
 using NHibernate;
+using NHibernate.Linq;
 
 
 namespace bookfly.Infra.Categorias.Repositories
@@ -40,7 +42,17 @@ namespace bookfly.Infra.Categorias.Repositories
             await _session.SaveAsync(categoria, cancellationToken);
         }
 
-    
+        public async Task<List<Categoria>> ListarAsync(CategoriaFiltro categoria, CancellationToken cancellationToken)
+        {
+
+            var query = _session.Query<Categoria>();
+
+
+            if (!string.IsNullOrEmpty(categoria.Nome))
+                query = query.Where(c => c.Nome.Contains(categoria.Nome));
+
+            return await query.ToListAsync(cancellationToken);
+        }
 
         public async Task<Categoria?> RecuperarPorIdAsync(int categoriaId, CancellationToken cancellationToken)
         {
