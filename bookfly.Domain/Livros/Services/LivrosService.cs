@@ -1,4 +1,7 @@
 
+using bookfly.Domain.Categorias.Entities;
+using bookfly.Domain.Categorias.Services.Interfaces;
+using bookfly.Domain.Enums;
 using bookfly.Domain.Livros.Commands;
 using bookfly.Domain.Livros.Entities;
 using bookfly.Domain.Livros.Repositories;
@@ -6,26 +9,87 @@ using bookfly.Domain.Livros.Services.Interfaces;
 
 namespace bookfly.Domain.Livros.Services
 {
-    public class LivrosService(ILivrosRepository livrosRepository) : ILivrosService
+    public class LivrosService(ILivrosRepository livrosRepository, ICategoriasService categoriasService) : ILivrosService
     {
-        public Task<Livro> EditarLivroAsync(EditarLivroCommand comando, int id, CancellationToken cancellationToken)
+        public async Task<Livro> EditarLivroAsync(EditarLivroCommand comando, int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Livro livro = await ValidarAsync(id, cancellationToken);
+
+            livro.SetTitulo(comando.Titulo);
+            livro.SetAutor(comando.Autor);
+            livro.SetSinopse(comando.Sinopse);
+            livro.SetTotalPaginas(comando.TotalPaginas);
+            livro.SetDataLancamento(comando.DataLancamento);
+            livro.SetUrlImagem(comando.UrlImagem);
+            livro.SetCategoria(comando.Categoria);
+
+
+
+            await livrosRepository.EditarAsync(livro, cancellationToken);
+            return livro;
         }
 
-        public Task<Livro> InserirLivroAsync(InserirLivroCommand comando, CancellationToken cancellationToken)
+        public async Task<Livro> InserirLivroAsync(InserirLivroCommand comando, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+             Livro livro = Instanciar(comando);
+
+            await livrosRepository.InserirAsync(livro, cancellationToken);
+            return livro;
+
         }
 
-        public Task<List<Livro>> ListarAsync(string titulo, string autor, CancellationToken cancellationToken)
+        public Livro Instanciar(InserirLivroCommand comando)
         {
-            throw new NotImplementedException();
+            return new Livro(comando.Titulo, comando.Autor, comando.Sinopse, comando.TotalPaginas, comando.DataLancamento, comando.UrlImagem, null);
         }
 
-        public Task<Livro> RecuperarPorIdAsync(int livroId, CancellationToken cancellationToken)
+
+        public async Task AdicionarCategoriaAsync(int livroId, Categoria categoria, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var livro = await ValidarAsync(livroId, cancellationToken);
+
+            await categoriasService.ValidarAsync(categoria.Id, cancellationToken);
+
+            livro.SetCategoria(categoria);
+
+            await livrosRepository.EditarAsync(livro, cancellationToken);
+        }
+
+        public async Task<List<Livro>> ListarAsync(string titulo, string autor, CancellationToken cancellationToken)
+        {
+            var livros = await livrosRepository.ListarAsync(titulo, autor, cancellationToken);
+
+            if (livros == null || !livros.Any())
+                return new List<Livro>();
+
+            return livros ?? new List<Livro>();
+        }
+
+        public async Task<Livro> ValidarAsync(int livroId, CancellationToken cancellationToken)
+        {
+            Livro? livro = await livrosRepository.RecuperarPorIdAsync(livroId, cancellationToken);
+
+            if (livro == null)
+                throw new Exception("Livro não encontrado");
+
+            return livro;
+        }
+
+        public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken)
+        {
+            Livro livro = await ValidarAsync(id, cancellationToken);
+
+            switch (livro.Situacao)
+            {
+                case AtivoInativoEnum.Ativo:
+                    livro.SetSituacao(AtivoInativoEnum.Inativo);
+                    break;
+                case AtivoInativoEnum.Inativo:
+                    livro.SetSituacao(AtivoInativoEnum.Ativo);
+                    break;
+            }
+
+            await livrosRepository.EditarAsync(livro, cancellationToken);
         }
     }
 }

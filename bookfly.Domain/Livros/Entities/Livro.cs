@@ -1,4 +1,5 @@
 
+using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Enums;
 
 namespace bookfly.Domain.Livros.Entities
@@ -13,14 +14,14 @@ namespace bookfly.Domain.Livros.Entities
         public virtual int TotalPaginas { get; protected set; }
         public virtual DateOnly DataLancamento { get; protected set; }
         public virtual string UrlImagem { get; protected set; }
-        public virtual int CategoriaId { get; protected set; }
+        public virtual Categoria Categoria { get; protected set; }
         public virtual AtivoInativoEnum Situacao { get; protected set; }
 
         public Livro()
         {
         }
 
-        public Livro(string titulo, string autor, string sinopse, int totalPaginas, DateOnly dataLancamento, string urlImagem, int categoriaId)
+        public Livro(string titulo, string autor, string sinopse, int totalPaginas, DateOnly dataLancamento, string urlImagem, Categoria categoria)
         {
             SetTitulo(titulo);
             SetAutor(autor);
@@ -28,7 +29,7 @@ namespace bookfly.Domain.Livros.Entities
             SetTotalPaginas(totalPaginas);
             SetDataLancamento(dataLancamento);
             SetUrlImagem(urlImagem);
-            SetCategoriaId(categoriaId);
+            SetCategoria(categoria);
             Ativar();
         }
         
@@ -82,12 +83,12 @@ namespace bookfly.Domain.Livros.Entities
             UrlImagem = urlImagem;
         }
 
-        public virtual void SetCategoriaId(int categoriaId)
+        public virtual void SetCategoria(Categoria categoria)
         {
-            if (categoriaId <= 0)
+            if (categoria == null || categoria.Id <= 0)
                 throw new Exception("O ID da categoria do livro deve ser maior que zero");
 
-            CategoriaId = categoriaId;
+            Categoria = categoria;
         }
 
         public virtual void SetSituacao(AtivoInativoEnum situacao)

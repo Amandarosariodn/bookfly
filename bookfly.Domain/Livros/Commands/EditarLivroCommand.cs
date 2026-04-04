@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bookfly.Domain.Categorias.Entities;
 
 namespace bookfly.Domain.Livros.Commands
 {
@@ -14,6 +15,6 @@ namespace bookfly.Domain.Livros.Commands
         public int TotalPaginas { get; set; }
         public DateOnly DataLancamento { get; set; }
         public string UrlImagem { get; set; }
-        public int CategoriaId { get; set; }
+        public Categoria Categoria { get; set; }
     }
 }
