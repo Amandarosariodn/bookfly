@@ -20,22 +20,15 @@ namespace bookfly.Application.Categorias.Services
             try
             {
                 var command = request.Adapt<EditarCategoriaCommand>();
-
                 Categoria categoria = await categoriasService.ValidarAsync(id, cancellationToken);
-
                 await unitOfWork.BeginAsync(cancellationToken);
-
                 await categoriasService.EditarCategoriaAsync(command, id, cancellationToken);
-
                 await unitOfWork.CommitAsync(cancellationToken);
-
                 return categoria.Adapt<CategoriaResponse>();
             }
             catch (Exception)
             {
-
                 await unitOfWork.RollbackAsync(cancellationToken);
-
                 throw;
             }
         }
@@ -45,20 +38,14 @@ namespace bookfly.Application.Categorias.Services
             try
             {
                 InserirCategoriaCommand command = request.Adapt<InserirCategoriaCommand>();
-
                 await unitOfWork.BeginAsync(cancellationToken);
-
                 Categoria categoria = await categoriasService.InserirCategoriaAsync(command, cancellationToken);
-
                 await unitOfWork.CommitAsync(cancellationToken);
-
                 return categoria.Adapt<CategoriaResponse>();
             }
             catch (Exception)
             {
-
                 await unitOfWork.RollbackAsync(cancellationToken);
-
                 throw;
             }
         }
@@ -68,7 +55,6 @@ namespace bookfly.Application.Categorias.Services
             var categorias = await categoriasService.ListarAsync(
                 new CategoriaFiltro { Nome = request.Nome },
                 cancellationToken);
-
             return categorias.Adapt<List<CategoriaResponse>>();
         }
 
@@ -77,16 +63,12 @@ namespace bookfly.Application.Categorias.Services
             try
             {
                 await unitOfWork.BeginAsync(cancellationToken);
-
                 await categoriasService.MudarSituacaoAsync(id, cancellationToken);
-
                 await unitOfWork.CommitAsync(cancellationToken);
             }
             catch (Exception)
             {
-
                 await unitOfWork.RollbackAsync(cancellationToken);
-
                 throw;
             }
         }
@@ -94,9 +76,7 @@ namespace bookfly.Application.Categorias.Services
         public async Task<CategoriaResponse> RecuperarAsync(int id, CancellationToken cancellationToken)
         {
             Categoria categoria = await categoriasService.ValidarAsync(id, cancellationToken);
-
             return categoria.Adapt<CategoriaResponse>();
         }
-
     }
 }

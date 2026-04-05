@@ -21,7 +21,7 @@ namespace bookfly.Domain.Livros.Services
             livro.SetTotalPaginas(comando.TotalPaginas);
             livro.SetDataLancamento(comando.DataLancamento);
             livro.SetUrlImagem(comando.UrlImagem);
-            livro.SetCategoria(comando.Categoria);
+            livro.SetCategoria(comando.CategoriaId);
 
 
 
@@ -40,7 +40,7 @@ namespace bookfly.Domain.Livros.Services
 
         public Livro Instanciar(InserirLivroCommand comando)
         {
-            return new Livro(comando.Titulo, comando.Autor, comando.Sinopse, comando.TotalPaginas, comando.DataLancamento, comando.UrlImagem, null);
+            return new Livro(comando.Titulo, comando.Autor, comando.Sinopse, comando.TotalPaginas, comando.DataLancamento, comando.UrlImagem, comando.CategoriaId);
         }
 
 
@@ -50,7 +50,7 @@ namespace bookfly.Domain.Livros.Services
 
             await categoriasService.ValidarAsync(categoria.Id, cancellationToken);
 
-            livro.SetCategoria(categoria);
+            livro.SetCategoria(categoria.Id);
 
             await livrosRepository.EditarAsync(livro, cancellationToken);
         }

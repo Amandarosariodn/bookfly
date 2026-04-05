@@ -10,6 +10,12 @@ using bookfly.Infra.NHibernate;
 using bookfly.Infra.UnitOfWork;
 using bookfly.Domain.Categorias.Services.Interfaces;
 using bookfly.Domain.Categorias.Services;
+using bookfly.Application.Livros.Services.Interfaces;
+using bookfly.Application.Livros.Services;
+using bookfly.Domain.Livros.Services.Interfaces;
+using bookfly.Domain.Livros.Services;
+using bookfly.Domain.Livros.Repositories;
+using bookfly.Infra.Livros.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,13 +57,17 @@ builder.Services.AddScoped<NHibernate.ISession>(sp =>
 builder.Services.AddScoped<IUnitOfWork, NHibernateUnitOfWork>();
 #endregion
 builder.Services.AddScoped<ICategoriasService, CategoriasService>();
+builder.Services.AddScoped<ILivrosService, LivrosService>();
 
 #region Repositories
 builder.Services.AddScoped<ICategoriasRepository, CategoriaRepository>();
+builder.Services.AddScoped<ILivrosRepository, LivroRepository>();
 #endregion
 
 #region Application Services
 builder.Services.AddScoped<ICategoriasAppService, CategoriasAppService>();
+builder.Services.AddScoped<ILivrosAppServices, LivrosAppServices>();
+
 #endregion
 
 var app = builder.Build();

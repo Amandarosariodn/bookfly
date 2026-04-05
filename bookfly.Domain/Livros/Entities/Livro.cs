@@ -12,16 +12,16 @@ namespace bookfly.Domain.Livros.Entities
         public virtual string Autor { get; protected set; }
         public virtual string Sinopse { get; protected set; }
         public virtual int TotalPaginas { get; protected set; }
-        public virtual DateOnly DataLancamento { get; protected set; }
+        public virtual DateTime DataLancamento { get; protected set; }
         public virtual string UrlImagem { get; protected set; }
-        public virtual Categoria Categoria { get; protected set; }
+        public virtual int CategoriaId { get; protected set; }
         public virtual AtivoInativoEnum Situacao { get; protected set; }
 
         public Livro()
         {
         }
 
-        public Livro(string titulo, string autor, string sinopse, int totalPaginas, DateOnly dataLancamento, string urlImagem, Categoria categoria)
+        public Livro(string titulo, string autor, string sinopse, int totalPaginas, DateTime dataLancamento, string urlImagem, int categoriaId)
         {
             SetTitulo(titulo);
             SetAutor(autor);
@@ -29,7 +29,7 @@ namespace bookfly.Domain.Livros.Entities
             SetTotalPaginas(totalPaginas);
             SetDataLancamento(dataLancamento);
             SetUrlImagem(urlImagem);
-            SetCategoria(categoria);
+            SetCategoria(categoriaId);
             Ativar();
         }
         
@@ -67,9 +67,9 @@ namespace bookfly.Domain.Livros.Entities
             TotalPaginas = totalPaginas;
         }
 
-        public virtual void SetDataLancamento(DateOnly dataLancamento)
+        public virtual void SetDataLancamento(DateTime dataLancamento)
         {
-            if (dataLancamento > DateOnly.FromDateTime(DateTime.Now))
+            if (dataLancamento > DateTime.Now)
                 throw new Exception("A data de lançamento do livro não pode ser futura");
 
             DataLancamento = dataLancamento;
@@ -83,12 +83,12 @@ namespace bookfly.Domain.Livros.Entities
             UrlImagem = urlImagem;
         }
 
-        public virtual void SetCategoria(Categoria categoria)
+        public virtual void SetCategoria(int categoriaId)
         {
-            if (categoria == null || categoria.Id <= 0)
+            if (categoriaId <= 0)
                 throw new Exception("O ID da categoria do livro deve ser maior que zero");
 
-            Categoria = categoria;
+            CategoriaId = categoriaId;
         }
 
         public virtual void SetSituacao(AtivoInativoEnum situacao)
