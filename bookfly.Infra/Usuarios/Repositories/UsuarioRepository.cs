@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using bookfly.Domain.Livros.Entities;
-using bookfly.Domain.Usuarios.Commands;
 using bookfly.Domain.Usuarios.Entities;
 using bookfly.Domain.Usuarios.Repositories;
 using bookfly.Domain.Usuarios.Repositories.Filters;
 using NHibernate;
 using NHibernate.Linq;
-using Org.BouncyCastle.Asn1.Misc;
+
 
 namespace bookfly.Infra.Usuarios.Repositories
 {

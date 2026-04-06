@@ -2,13 +2,14 @@ using bookfly.Domain.Enums;
 using bookfly.Domain.Usuarios.Commands;
 using bookfly.Domain.Usuarios.Entities;
 using bookfly.Domain.Usuarios.Repositories;
+using bookfly.Domain.Usuarios.Repositories.Filters;
 using bookfly.Domain.Usuarios.Services.Interfaces;
 
 namespace bookfly.Domain.Usuarios.Services
 {
     public class UsuariosService(IUsuariosRepository usuariosRepository) : IUsuariosServices
     {
-        public async Task<Usuario> EditarAsync(EditarUsuarioCommand comando,int id, CancellationToken cancellationToken)
+        public async Task<Usuario> EditarAsync(EditarUsuarioCommand comando, int id, CancellationToken cancellationToken)
         {
             Usuario usuario = await ValidarAsync(id, cancellationToken);
 
@@ -21,24 +22,26 @@ namespace bookfly.Domain.Usuarios.Services
             usuario.SetSituacao(comando.Situacao);
             usuario.SetCriadoEm(comando.CriadoEm);
 
-            await usuariosRepository.EditarAsync(comando, cancellationToken);
+            await usuariosRepository.EditarAsync(usuario, cancellationToken);
             return usuario;
-            
+
         }
 
         public async Task<Usuario> InserirAsync(InserirUsuarioCommand comando, CancellationToken cancellationToken)
         {
             Usuario usuario = Instanciar(comando);
 
-            await usuariosRepository.InserirAsync(comando, cancellationToken);
+            await usuariosRepository.InserirAsync(
+            usuario,
+            cancellationToken);
             return usuario;
         }
 
-        public async Task<List<Usuario>> ListarAsync(ListarUsuarioCommand filtro, CancellationToken cancellationToken)
+        public async Task<List<Usuario>> ListarAsync(UsuarioFiltro filtro, CancellationToken cancellationToken)
         {
             var usuarios = await usuariosRepository.ListarAsync(filtro, cancellationToken);
 
-            if(usuarios == null || !usuarios.Any())
+            if (usuarios == null || !usuarios.Any())
                 return new List<Usuario>();
 
             return usuarios ?? new List<Usuario>();
