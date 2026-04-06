@@ -15,7 +15,7 @@ namespace bookfly.Domain.Usuarios.Entities
         public virtual AtivoInativoEnum Situacao { get; protected set; }
         public virtual DateTime CriadoEm { get; protected set; }
 
-        public Usuario()
+        protected  Usuario()
         {
         }
 
@@ -54,16 +54,12 @@ namespace bookfly.Domain.Usuarios.Entities
         }
         
         public virtual void SetBiografia(string biografia)
-        {
-            if (string.IsNullOrEmpty(biografia))
-                throw new ArgumentException("A biografia não pode ser vazia.");
+        {  
             Biografia = biografia;
         }
 
         public virtual void SetUrlImagem(string urlImagem)
         {
-            if (string.IsNullOrEmpty(urlImagem))
-                throw new ArgumentException("A URL da imagem não pode ser vazia.");
             UrlImagem = urlImagem;
         }
 
