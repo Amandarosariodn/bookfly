@@ -19,7 +19,7 @@ namespace bookfly.Domain.Usuarios.Entities
         {
         }
 
-        public Usuario(int id, string email, string username, string senhaHash, string biografia, string urlImagem, bool receberSpoilers, DateTime criadoEm)
+        public Usuario(string email, string username, string senhaHash, string biografia, string urlImagem, bool receberSpoilers, DateTime criadoEm)
         {
             SetEmail(email);
             SetUsername(username);
@@ -29,7 +29,7 @@ namespace bookfly.Domain.Usuarios.Entities
             SetReceberSpoilers(receberSpoilers);
             SetCriadoEm(criadoEm);
             Ativar();
-            Id = id;
+           
         }
 
         public virtual void SetEmail(string email)

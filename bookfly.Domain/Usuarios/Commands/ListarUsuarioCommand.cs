@@ -7,6 +7,6 @@ namespace bookfly.Domain.Usuarios.Commands
 {
     public class ListarUsuarioCommand
     {
-        
+        public string Username { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 
+using bookfly.Domain.Enums;
+
 namespace bookfly.Domain.Usuarios.Commands
 {
     public class InserirUsuarioCommand
