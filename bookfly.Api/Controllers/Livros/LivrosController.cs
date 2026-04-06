@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace bookfly.Api.Controllers.Livros
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("livros")]
     public class LivrosController(ILivrosAppServices livrosAppServices) : ControllerBase
     {
 
@@ -74,7 +74,7 @@ namespace bookfly.Api.Controllers.Livros
         /// <param name="id">Id do livro</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [HttpPatch("/status/{id:int}")]
+        [HttpPatch("livro/status/{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> MudarSituacaoAsync(int id, CancellationToken cancellationToken)
         {
@@ -84,7 +84,7 @@ namespace bookfly.Api.Controllers.Livros
         }
         
         /// <summary>
-        /// Inserir uma novo livro
+        /// Inserir um novo livro
         /// </summary>
         /// <param name="request">Dados para inserção do livro</param>
         /// <param name="cancellationToken"></param>

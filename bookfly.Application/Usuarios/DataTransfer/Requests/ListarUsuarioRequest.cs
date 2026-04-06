@@ -7,6 +7,6 @@ namespace bookfly.Application.Usuarios.DataTransfer.Requests
 {
     public class ListarUsuarioRequest
     {
-        public string Username { get; set; }
+        public string? Username { get; set; }
     }
 }

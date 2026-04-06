@@ -7,6 +7,6 @@ namespace bookfly.Domain.Usuarios.Repositories.Filters
 {
     public class UsuarioFiltro
     {
-        public string Username { get; set; }
+        public string? Username { get; set; }
     }
 }
