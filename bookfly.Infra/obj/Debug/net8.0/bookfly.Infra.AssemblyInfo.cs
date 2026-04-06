@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bookfly.Infra")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce25b50103658deae59cc406b44a9a51efd8ff86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f9f56e33a7b87738de6b4db723cc31877c896ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("bookfly.Infra")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bookfly.Infra")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

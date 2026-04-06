@@ -7,10 +7,9 @@ namespace bookfly.Domain.Usuarios.Repositories
 {
     public interface IUsuariosRepository
     {
-        Task<Usuario> InserirAsync(InserirUsuarioCommand comando, CancellationToken cancellationToken);
-        Task<Usuario> EditarAsync(EditarUsuarioCommand comando, CancellationToken cancellationToken);
-        Task<List<Usuario>> ListarAsync(ListarUsuarioCommand comando, CancellationToken cancellationToken);
-        Task<Usuario> MudarSituacaoAsync(int id, CancellationToken cancellationToken);
+        Task InserirAsync(Usuario usuario, CancellationToken cancellationToken);
+        Task EditarAsync(Usuario usuario, CancellationToken cancellationToken);
+        Task<List<Usuario>> ListarAsync(UsuarioFiltro filtro, CancellationToken cancellationToken);
         Task<Usuario> ValidarAsync(int usuarioId, CancellationToken cancellationToken);
 
     }
