@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bookfly.Domain.SeguidorUsuarios.Entities;
 using bookfly.Domain.SeguidorUsuarios.Repositories;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace bookfly.Infra.SeguidorUsuarios.Repositories
 {
@@ -12,39 +13,94 @@ namespace bookfly.Infra.SeguidorUsuarios.Repositories
     {
         private readonly ISession _session = session;
 
-        public Task<int> ContarSeguidoresAsync(int usuarioId, CancellationToken cancellationToken)
+        public async Task<int> ContarSeguidoresAsync(
+        int usuarioId,
+        CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _session
+                .Query<SeguidorUsuario>()
+                .Where(s => s.SeguidorID == usuarioId)
+                .CountAsync(cancellationToken);
+        }
+        public async Task<int> ContarSeguindoAsync(int usuarioId, CancellationToken cancellationToken)
+        {
+            return await _session.Query<SeguidorUsuario>().Where(s => s.SeguidoID == usuarioId).CountAsync(cancellationToken);
         }
 
-        public Task<int> ContarSeguindoAsync(int usuarioId, CancellationToken cancellationToken)
+        public async Task DeixarDeSeguirAsync(
+        int seguidorId,
+        int seguidoId,
+        CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var relacao = await _session
+                .Query<SeguidorUsuario>()
+                .FirstOrDefaultAsync(
+                    s => s.SeguidorID == seguidorId
+                      && s.SeguidoID == seguidoId,
+                    cancellationToken);
+
+            if (relacao == null)
+                throw new Exception("Usuário não está seguindo.");
+
+            await _session.DeleteAsync(
+                relacao,
+                cancellationToken);
         }
 
-        public Task DeixarDeSeguirAsync(int seguidorId, int seguindoId, CancellationToken cancellationToken)
+        public async Task<bool> JaSeguindoAsync(
+        int seguidorId,
+        int seguindoId,
+        CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _session
+                .Query<SeguidorUsuario>()
+                .AnyAsync(
+                    s => s.SeguidorID == seguidorId
+                      && s.SeguidoID == seguindoId,
+                    cancellationToken);
         }
 
-        public Task<bool> JaSeguindoAsync(int seguidorId, int seguindoId, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<int>> ObterSeguidoresAsync(
+        int usuarioId,
+        CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _session
+            .Query<SeguidorUsuario>()
+            .Where(s => s.SeguidoID == usuarioId)
+            .Select(s => s.SeguidorID)
+            .ToListAsync(cancellationToken);
         }
 
-        public Task<IReadOnlyList<int>> ObterSeguidoresAsync(int usuarioId, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<int>> ObterSeguindoAsync(int usuarioId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _session.Query<SeguidorUsuario>().Where(s => s.SeguidorID == usuarioId).Select(s => s.SeguidoID).ToListAsync(cancellationToken);
         }
 
-        public Task<IReadOnlyList<int>> ObterSeguindoAsync(int usuarioId, CancellationToken cancellationToken)
+        public async Task SeguirAsync(
+        int seguidorId,
+        int seguidoId,
+        CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            if (seguidorId == seguidoId)
+                throw new Exception("Usuário não pode seguir a si mesmo.");
 
-        public Task SeguirAsync(SeguidorUsuario seguidor, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            bool jaSegue = await _session
+                .Query<SeguidorUsuario>()
+                .AnyAsync(
+                    s => s.SeguidorID == seguidorId
+                      && s.SeguidoID == seguidoId,
+                    cancellationToken);
+
+            if (jaSegue)
+                throw new Exception("Usuário já está seguindo.");
+
+            var novoSeguidor = new SeguidorUsuario(
+                seguidorId,
+                seguidoId);
+
+            await _session.SaveAsync(
+                novoSeguidor,
+                cancellationToken);
         }
     }
 }
