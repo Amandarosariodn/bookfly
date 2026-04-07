@@ -2,6 +2,7 @@
 using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Categorias.Services.Interfaces;
 using bookfly.Domain.Enums;
+using bookfly.Domain.GoogleBooks.Services.Interfaces;
 using bookfly.Domain.Livros.Commands;
 using bookfly.Domain.Livros.Entities;
 using bookfly.Domain.Livros.Repositories;
@@ -9,7 +10,7 @@ using bookfly.Domain.Livros.Services.Interfaces;
 
 namespace bookfly.Domain.Livros.Services
 {
-    public class LivrosService(ILivrosRepository livrosRepository, ICategoriasService categoriasService) : ILivrosService
+    public class LivrosService(ILivrosRepository livrosRepository, ICategoriasService categoriasService, IGoogleBooksService googleBooksService) : ILivrosService
     {
         public async Task<Livro> EditarLivroAsync(EditarLivroCommand comando, int id, CancellationToken cancellationToken)
         {
@@ -31,7 +32,7 @@ namespace bookfly.Domain.Livros.Services
 
         public async Task<Livro> InserirLivroAsync(InserirLivroCommand comando, CancellationToken cancellationToken)
         {
-             Livro livro = Instanciar(comando);
+            Livro livro = Instanciar(comando);
 
             await livrosRepository.InserirAsync(livro, cancellationToken);
             return livro;
@@ -40,7 +41,16 @@ namespace bookfly.Domain.Livros.Services
 
         public Livro Instanciar(InserirLivroCommand comando)
         {
-            return new Livro(comando.Titulo, comando.Autor, comando.Sinopse, comando.TotalPaginas, comando.DataLancamento, comando.UrlImagem, comando.CategoriaId);
+            return new Livro(
+                    googleBooksId: null,
+                    titulo: comando.Titulo,
+                    autor: comando.Autor,
+                    sinopse: comando.Sinopse,
+                    totalPaginas: comando.TotalPaginas,
+                    dataLancamento: comando.DataLancamento,
+                    urlImagem: comando.UrlImagem,
+                    categoriaId: comando.CategoriaId
+                );
         }
 
 
@@ -90,6 +100,57 @@ namespace bookfly.Domain.Livros.Services
             }
 
             await livrosRepository.EditarAsync(livro, cancellationToken);
+        }
+
+        public async Task<Livro> CriarLivroViaGoogleAsync(
+    string googleBooksId,
+    int categoriaId,
+    CancellationToken cancellationToken)
+        {
+            var existente =
+                await livrosRepository.BuscarPorGoogleIdAsync(
+                    googleBooksId,
+                    cancellationToken);
+
+            if (existente != null)
+                return existente;
+
+            var item =
+                await googleBooksService.BuscarPorIdAsync(
+                    googleBooksId, cancellationToken);
+
+            if (item == null)
+                throw new Exception("Livro não encontrado");
+
+            var info = item.VolumeInfo;
+
+            var autores = info.Authors != null
+                ? string.Join(", ", info.Authors)
+                : "Autor desconhecido";
+
+            var paginas = info.PageCount ?? 1;
+
+            var dataLancamento =
+                DateTime.TryParse(info.PublishedDate, out var data)
+                ? data
+                : DateTime.Now;
+
+            var livro = new Livro(
+                googleBooksId: item.Id,
+                titulo: info.Title,
+                autor: autores,
+                sinopse: info.Description ?? "Sem descrição",
+                totalPaginas: paginas,
+                dataLancamento: dataLancamento,
+                urlImagem: info.ImageLinks?.Thumbnail ?? "",
+                categoriaId: categoriaId
+            );
+
+            await livrosRepository.InserirAsync(
+                livro,
+                cancellationToken);
+
+            return livro;
         }
     }
 }

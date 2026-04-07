@@ -21,8 +21,11 @@ namespace bookfly.Domain.Livros.Entities
         {
         }
 
-        public Livro(string titulo, string autor, string sinopse, int totalPaginas, DateTime dataLancamento, string urlImagem, int categoriaId)
+        public Livro(string? googleBooksId, string titulo, string autor, string sinopse, int totalPaginas, DateTime dataLancamento, string urlImagem, int categoriaId)
         {
+            if (!string.IsNullOrEmpty(googleBooksId))
+                SetGoogleBooksId(googleBooksId);
+
             SetTitulo(titulo);
             SetAutor(autor);
             SetSinopse(sinopse);
@@ -32,10 +35,16 @@ namespace bookfly.Domain.Livros.Entities
             SetCategoria(categoriaId);
             Ativar();
         }
-        
 
-        
 
+
+        public virtual void SetGoogleBooksId(string googleBooksId)
+        {
+            if (string.IsNullOrEmpty(googleBooksId))
+                throw new Exception("GoogleBooksId não pode ser nulo");
+
+            GoogleBooksId = googleBooksId;
+        }
         public virtual void SetTitulo(string titulo)
         {
             if (string.IsNullOrEmpty(titulo))

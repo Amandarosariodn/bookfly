@@ -82,7 +82,7 @@ namespace bookfly.Api.Controllers.Livros
 
             return NoContent();
         }
-        
+
         /// <summary>
         /// Inserir um novo livro
         /// </summary>
@@ -96,6 +96,20 @@ namespace bookfly.Api.Controllers.Livros
             LivroResponse response = await livrosAppServices.InserirAsync(request, cancellationToken);
 
             return Ok(response);
+        }
+
+        [HttpPost("google")]
+        public async Task<IActionResult> InserirViaGoogle(
+        [FromBody] InserirLivroViaGoogleRequest request,
+        CancellationToken cancellationToken)
+        {
+            var livro =
+                await livrosAppServices.InserirViaGoogleAsync(
+                    request.GoogleBooksId,
+                    request.CategoriaId,
+                    cancellationToken);
+
+            return Ok(livro);
         }
     }
 }

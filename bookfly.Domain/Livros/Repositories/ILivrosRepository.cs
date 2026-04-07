@@ -8,6 +8,7 @@ namespace bookfly.Domain.Livros.Repositories
         Task InserirAsync(Livro livro, CancellationToken cancellationToken);
         Task EditarAsync(Livro livro, CancellationToken cancellationToken);
         Task<List<Livro>> ListarAsync(string titulo, string autor, CancellationToken cancellationToken);
-        
+        Task<Livro?> BuscarPorGoogleIdAsync(string googleBooksId, CancellationToken cancellationToken);
+
     }
 }

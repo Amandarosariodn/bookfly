@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("b4e6b5ae-7ad1-4db1-93b2-a8b80789a81d")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("bookfly.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abd08b38a9e3e624fda15dbcd11622907fdfb161")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02b24d7ffb325bafd58c6570c2e8f69052c467e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("bookfly.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bookfly.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

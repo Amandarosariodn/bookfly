@@ -22,6 +22,8 @@ using bookfly.Domain.Usuarios.Repositories;
 using bookfly.Infra.Usuarios.Repositories;
 using bookfly.Application.Usuarios.Services.Interfaces;
 using bookfly.Application.Usuarios.Services;
+using bookfly.Domain.GoogleBooks.Services.Interfaces;
+using bookfly.Infra.GoogleBooks.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +67,7 @@ builder.Services.AddScoped<IUnitOfWork, NHibernateUnitOfWork>();
 builder.Services.AddScoped<ICategoriasService, CategoriasService>();
 builder.Services.AddScoped<ILivrosService, LivrosService>();
 builder.Services.AddScoped<IUsuariosServices, UsuariosService>();
-
+builder.Services.AddHttpClient<IGoogleBooksService,GoogleBooksService>();
 #region Repositories
 builder.Services.AddScoped<ICategoriasRepository, CategoriaRepository>();
 builder.Services.AddScoped<ILivrosRepository, LivroRepository>();
@@ -78,7 +80,6 @@ builder.Services.AddScoped<ILivrosAppServices, LivrosAppServices>();
 builder.Services.AddScoped<IUsuariosAppService, UsuariosAppService>();
 
 #endregion
-
 var app = builder.Build();
 
 #region Middleware pipeline

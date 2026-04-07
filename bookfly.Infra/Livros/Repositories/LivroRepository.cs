@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using bookfly.Domain.Livros.Entities;
 using bookfly.Domain.Livros.Repositories;
 using NHibernate;
@@ -21,7 +22,7 @@ namespace bookfly.Infra.Livros.Repositories
         {
             if (livro == null)
                 throw new ArgumentNullException(nameof(livro));
-                
+
 
             await _session.SaveAsync(livro, cancellationToken);
         }
@@ -42,6 +43,15 @@ namespace bookfly.Infra.Livros.Repositories
         {
             return await _session.GetAsync<Livro>(livroId, cancellationToken);
         }
-        
+
+        public async Task<Livro?> BuscarPorGoogleIdAsync(string googleBooksId, CancellationToken cancellationToken)
+        {
+
+            return await _session
+            .Query<Livro>()
+            .FirstOrDefaultAsync(l =>
+            l.GoogleBooksId == googleBooksId, cancellationToken);
+        }
+
     }
 }

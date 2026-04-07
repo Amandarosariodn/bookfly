@@ -1,0 +1,31 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Arquivos de ambiente
+appsettings.Development.json
+
+# Banco local
+*.mdf
+*.ldf
+
+# Pacotes
+packages/
+
+# Outros
+*.tmp
+*.cache
+
+# Arquivos com chaves
+appsettings.Development.json
+.env
+secrets.json
+config.local.json

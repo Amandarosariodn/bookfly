@@ -12,6 +12,8 @@ namespace bookfly.Application.Livros.Services.Interfaces
         Task<LivroResponse> RecuperarAsync(int id, CancellationToken cancellationToken);
         Task<List<LivroResponse>> ListarAsync(ListarLivroRequest request, CancellationToken cancellationToken);
         Task MudarSituacaoAsync(int id, CancellationToken cancellationToken);
+
+        Task<LivroResponse> InserirViaGoogleAsync( string googleBooksId,int categoriaId,CancellationToken cancellationToken);
         
     }
 }

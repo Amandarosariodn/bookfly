@@ -14,5 +14,6 @@ namespace bookfly.Domain.Livros.Services.Interfaces
         Livro Instanciar(InserirLivroCommand comando);
         Task MudarSituacaoAsync(int id, CancellationToken cancellationToken);
         Task AdicionarCategoriaAsync(int livroId, Categoria categoria, CancellationToken cancellationToken);
+        Task<Livro> CriarLivroViaGoogleAsync(string googleBooksId,int categoriaId,CancellationToken cancellationToken);
     }
 }

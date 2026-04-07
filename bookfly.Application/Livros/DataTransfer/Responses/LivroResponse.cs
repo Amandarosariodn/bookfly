@@ -1,5 +1,4 @@
 using bookfly.Application.Categorias.DataTransfer.Responses;
-using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Enums;
 
 namespace bookfly.Application.Livros.DataTransfer.Responses

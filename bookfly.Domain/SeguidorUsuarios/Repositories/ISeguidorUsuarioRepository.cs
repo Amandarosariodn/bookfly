@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using bookfly.Domain.SeguidorUsuarios.Entities;
 
 namespace bookfly.Domain.SeguidorUsuarios.Repositories

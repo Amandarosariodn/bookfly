@@ -76,8 +76,34 @@ namespace bookfly.Application.Livros.Services
 
         public async Task<LivroResponse> RecuperarAsync(int id, CancellationToken cancellationToken)
         {
-           Livro livro = await livroServices.ValidarAsync(id, cancellationToken);
+            Livro livro = await livroServices.ValidarAsync(id, cancellationToken);
             return livro.Adapt<LivroResponse>();
+        }
+
+        public async Task<LivroResponse> InserirViaGoogleAsync(
+    string googleBooksId,
+    int categoriaId,
+    CancellationToken cancellationToken)
+        {
+            try
+            {
+                await unitOfWork.BeginAsync(cancellationToken);
+
+                var livro =
+                    await livroServices.CriarLivroViaGoogleAsync(
+                        googleBooksId,
+                        categoriaId,
+                        cancellationToken);
+
+                await unitOfWork.CommitAsync(cancellationToken);
+
+                return livro.Adapt<LivroResponse>();
+            }
+            catch (Exception)
+            {
+                await unitOfWork.RollbackAsync(cancellationToken);
+                throw;
+            }
         }
     }
 }
