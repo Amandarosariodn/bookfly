@@ -488,6 +488,7 @@
         "dependencies": {
           "Mapster": "10.0.6",
           "Mapster.DependencyInjection": "10.0.6",
+          "Microsoft.Extensions.Configuration.Json": "10.0.5",
           "bookfly.Domain": "1.0.0"
         },
         "runtime": {
@@ -498,6 +499,9 @@
         }
       },
       "bookfly.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Json": "10.0.5"
+        },
         "runtime": {
           "bookfly.Domain.dll": {
             "assemblyVersion": "1.0.0.0",

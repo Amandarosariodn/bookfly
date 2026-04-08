@@ -2018,6 +2018,7 @@
         "dependencies": {
           "Mapster": "10.0.6",
           "Mapster.DependencyInjection": "10.0.6",
+          "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "bookfly.Domain": "1.0.0"
         },
         "compile": {
@@ -2030,6 +2031,9 @@
       "bookfly.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Json": "8.0.0"
+        },
         "compile": {
           "bin/placeholder/bookfly.Domain.dll": {}
         },
@@ -2044,7 +2048,7 @@
           "FluentNHibernate": "3.4.1",
           "Microsoft.Extensions.Configuration": "10.0.5",
           "Microsoft.Extensions.Configuration.Abstractions": "10.0.5",
-          "Microsoft.Extensions.Configuration.Json": "10.0.5",
+          "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "MySql.Data": "8.4.0",
           "NHibernate": "5.6.0",
           "bookfly.Application": "1.0.0",
@@ -6708,5 +6712,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://nuget-repo.autoglass.com.br/v3/index.json."
+    }
+  ]
 }

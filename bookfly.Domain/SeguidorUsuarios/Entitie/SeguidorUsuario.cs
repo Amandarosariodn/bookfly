@@ -17,5 +17,27 @@ namespace bookfly.Domain.SeguidorUsuarios.Entities
             SeguidoID = seguidoId;
             CriadoEm = DateTime.UtcNow;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            var other = (SeguidorUsuario)obj;
+
+            return SeguidorID == other.SeguidorID
+                && SeguidoID == other.SeguidoID;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + SeguidorID.GetHashCode();
+                hash = hash * 23 + SeguidoID.GetHashCode();
+                return hash;
+            }
+        }
     }
 }

@@ -10,3 +10,4 @@ C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Domain\obj\Debug\n
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Domain\obj\Debug\net8.0\refint\bookfly.Domain.dll
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Domain\obj\Debug\net8.0\bookfly.Domain.pdb
 C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Domain\obj\Debug\net8.0\ref\bookfly.Domain.dll
+C:\Users\amanda.rosario\Documents\bookfly-api\bookfly\bookfly.Domain\obj\Debug\net8.0\bookfly.Domain.csproj.AssemblyReference.cache

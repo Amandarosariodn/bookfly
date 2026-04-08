@@ -60,20 +60,19 @@ namespace bookfly.Infra.SeguidorUsuarios.Repositories
                     cancellationToken);
         }
 
-        public async Task<IReadOnlyList<int>> ObterSeguidoresAsync(
+        public async Task<List<SeguidorUsuario>> ObterSeguidoresAsync(
         int usuarioId,
         CancellationToken cancellationToken)
         {
             return await _session
-            .Query<SeguidorUsuario>()
-            .Where(s => s.SeguidoID == usuarioId)
-            .Select(s => s.SeguidorID)
-            .ToListAsync(cancellationToken);
+                .Query<SeguidorUsuario>()
+                .Where(s => s.SeguidoID == usuarioId)
+                .ToListAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyList<int>> ObterSeguindoAsync(int usuarioId, CancellationToken cancellationToken)
+        public async Task<List<SeguidorUsuario>> ObterSeguindoAsync(int usuarioId, CancellationToken cancellationToken)
         {
-            return await _session.Query<SeguidorUsuario>().Where(s => s.SeguidorID == usuarioId).Select(s => s.SeguidoID).ToListAsync(cancellationToken);
+            return await _session.Query<SeguidorUsuario>().Where(s => s.SeguidorID == usuarioId).ToListAsync(cancellationToken);
         }
 
         public async Task SeguirAsync(

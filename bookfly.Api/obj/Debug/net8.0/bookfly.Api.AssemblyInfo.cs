@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bookfly.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02b24d7ffb325bafd58c6570c2e8f69052c467e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b282d7330588269487823913b7fc45a162f199f")]
 [assembly: System.Reflection.AssemblyProductAttribute("bookfly.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bookfly.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
