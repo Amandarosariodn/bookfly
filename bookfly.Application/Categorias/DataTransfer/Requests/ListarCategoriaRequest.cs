@@ -1,6 +1,5 @@
 
 
-using bookfly.Domain.Enums;
 
 namespace bookfly.Application.Categorias.DataTransfer.Requests
 {
@@ -9,6 +8,6 @@ namespace bookfly.Application.Categorias.DataTransfer.Requests
         public int? Id { get; set; }
 
         public string? Nome { get; set; }
-        public AtivoInativoEnum? Situacao { get; set; }
+        public bool? Situacao { get; set; }
     }
 }

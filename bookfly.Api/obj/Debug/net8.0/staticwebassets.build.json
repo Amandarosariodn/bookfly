@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"Mgs4ZXqccV9sGCBp2DRouR7tvNYMQ+47Te9EOD16ZyU=","Source":"bookfly.Api","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "di3bwL67xS/y4zfnR80ZvX/JZFbaXV5SU1stWhuhO3k=",
+  "Source": "bookfly.Api",
+  "BasePath": "_content/bookfly.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

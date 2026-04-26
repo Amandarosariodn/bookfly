@@ -1,5 +1,4 @@
 using bookfly.Application.Categorias.DataTransfer.Responses;
-using bookfly.Domain.Enums;
 
 namespace bookfly.Application.Livros.DataTransfer.Responses
 {
@@ -14,6 +13,6 @@ namespace bookfly.Application.Livros.DataTransfer.Responses
         public virtual DateTime DataLancamento { get; protected set; }
         public virtual string UrlImagem { get; protected set; }
         public virtual CategoriaResponse Categoria { get; protected set; }
-        public virtual AtivoInativoEnum Situacao { get; protected set; }
+        public virtual bool Situacao { get; protected set; }
     }
 }

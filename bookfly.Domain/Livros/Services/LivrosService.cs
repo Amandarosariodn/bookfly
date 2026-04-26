@@ -1,7 +1,6 @@
 
 using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Categorias.Services.Interfaces;
-using bookfly.Domain.Enums;
 using bookfly.Domain.GoogleBooks.Services.Interfaces;
 using bookfly.Domain.Livros.Commands;
 using bookfly.Domain.Livros.Entities;
@@ -23,8 +22,6 @@ namespace bookfly.Domain.Livros.Services
             livro.SetDataLancamento(comando.DataLancamento);
             livro.SetUrlImagem(comando.UrlImagem);
             livro.SetCategoria(comando.CategoriaId);
-
-
 
             await livrosRepository.EditarAsync(livro, cancellationToken);
             return livro;
@@ -86,26 +83,18 @@ namespace bookfly.Domain.Livros.Services
         }
 
         public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken)
-        {
-            Livro livro = await ValidarAsync(id, cancellationToken);
+{
+    Livro livro = await ValidarAsync(id, cancellationToken);
 
-            switch (livro.Situacao)
-            {
-                case AtivoInativoEnum.Ativo:
-                    livro.SetSituacao(AtivoInativoEnum.Inativo);
-                    break;
-                case AtivoInativoEnum.Inativo:
-                    livro.SetSituacao(AtivoInativoEnum.Ativo);
-                    break;
-            }
+    livro.SetSituacao(!livro.Situacao);
 
-            await livrosRepository.EditarAsync(livro, cancellationToken);
-        }
+    await livrosRepository.EditarAsync(livro, cancellationToken);
+}
 
         public async Task<Livro> CriarLivroViaGoogleAsync(
-    string googleBooksId,
-    int categoriaId,
-    CancellationToken cancellationToken)
+        string googleBooksId,
+        int categoriaId,
+        CancellationToken cancellationToken)
         {
             var existente =
                 await livrosRepository.BuscarPorGoogleIdAsync(

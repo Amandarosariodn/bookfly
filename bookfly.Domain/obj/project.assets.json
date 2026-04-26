@@ -558,26 +558,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amanda.rosario\\.nuget\\packages\\": {}
+    "/Users/amandarosariodonascimento/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj",
+      "projectUniqueName": "/Users/amandarosariodonascimento/Documents/bookflyAPI/bookfly/bookfly.Domain/bookfly.Domain.csproj",
       "projectName": "bookfly.Domain",
-      "projectPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\bookfly.Domain.csproj",
-      "packagesPath": "C:\\Users\\amanda.rosario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amanda.rosario\\Documents\\bookfly-api\\bookfly\\bookfly.Domain\\obj\\",
+      "projectPath": "/Users/amandarosariodonascimento/Documents/bookflyAPI/bookfly/bookfly.Domain/bookfly.Domain.csproj",
+      "packagesPath": "/Users/amandarosariodonascimento/.nuget/packages/",
+      "outputPath": "/Users/amandarosariodonascimento/Documents/bookflyAPI/bookfly/bookfly.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\amanda.rosario\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/amandarosariodonascimento/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget-repo.autoglass.com.br/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
@@ -589,13 +588,7 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "10.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -617,35 +610,13 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet@8/8.0.125/libexec/sdk/8.0.125/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Ocorreu um erro ao obter os dados de vulnerabilidade do pacote: Não é possível carregar o índice de serviço para a origem https://nuget-repo.autoglass.com.br/v3/index.json."
-    }
-  ]
+  }
 }

@@ -1,6 +1,5 @@
 
 using bookfly.Domain.Categorias.Entities;
-using bookfly.Domain.Enums;
 using FluentNHibernate.Mapping;
 
 namespace bookfly.Infra.Categorias.Mappings
@@ -11,11 +10,11 @@ namespace bookfly.Infra.Categorias.Mappings
         {
             Table("categoria");
 
-            Id(categoria => categoria.Id).Column("ID").GeneratedBy.Identity();
-            Map(categoria => categoria.Nome).Column("NOME").Not.Nullable();
+            Id(Categoria => Categoria.Id).Column("ID").GeneratedBy.Identity();
+            Map(Categoria => Categoria.Nome).Column("NOME").Not.Nullable();
             Map(categoria => categoria.Descricao).Column("descricao").Nullable();
             Map(categoria => categoria.UrlImagem).Column("url_imagem").Nullable();
-            Map(categoria => categoria.Situacao).Column("ativo_inativo").CustomType<AtivoInativoEnum>().Nullable();
+            Map(categoria => categoria.Situacao).Column("ativo_inativo").CustomType<bool>().Nullable();
         }
     }
 } 

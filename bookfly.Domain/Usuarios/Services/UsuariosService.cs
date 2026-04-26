@@ -1,4 +1,3 @@
-using bookfly.Domain.Enums;
 using bookfly.Domain.Usuarios.Commands;
 using bookfly.Domain.Usuarios.Entities;
 using bookfly.Domain.Usuarios.Repositories;
@@ -47,18 +46,14 @@ namespace bookfly.Domain.Usuarios.Services
             return usuarios ?? new List<Usuario>();
         }
 
-        public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken)
-        {
-            Usuario usuario = await ValidarAsync(id, cancellationToken);
+public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken)
+{
+    Usuario livro = await ValidarAsync(id, cancellationToken);
 
-            switch (usuario.Situacao)
-            {
-                case AtivoInativoEnum.Ativo:
-                    usuario.SetSituacao(AtivoInativoEnum.Inativo);
-                    break;
-                case AtivoInativoEnum.Inativo: usuario.SetSituacao(AtivoInativoEnum.Ativo); break;
-            }
-        }
+    livro.SetSituacao(!livro.Situacao); 
+
+    await usuariosRepository.EditarAsync(livro, cancellationToken);
+}
 
         private static Usuario Instanciar(InserirUsuarioCommand usuario)
         {

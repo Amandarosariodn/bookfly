@@ -1,5 +1,3 @@
-
-using bookfly.Domain.Enums;
 using bookfly.Domain.Usuarios.Entities;
 using FluentNHibernate.Mapping;
 
@@ -18,7 +16,7 @@ namespace bookfly.Infra.Usuarios.Mappings
             Map(usuario => usuario.Biografia).Column("biografia").Nullable();
             Map(usuario => usuario.UrlImagem).Column("url_imagem").Nullable();
             Map(usuario => usuario.ReceberSpoilers).Column("receber_spoilers").Nullable();
-            Map(usuario => usuario.Situacao).Column("ativo_inativo").CustomType<AtivoInativoEnum>().Nullable();
+            Map(usuario => usuario.Situacao).Column("ativo_inativo").CustomType<bool>().Nullable();
             Map(usuario => usuario.CriadoEm).Column("criado_em");
         }
         

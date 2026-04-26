@@ -1,5 +1,4 @@
 
-using bookfly.Domain.Enums;
 
 namespace bookfly.Domain.Usuarios.Entities
 {
@@ -12,7 +11,7 @@ namespace bookfly.Domain.Usuarios.Entities
         public virtual string Biografia { get; protected set; }
         public virtual string UrlImagem { get; protected set; }
         public virtual bool ReceberSpoilers { get; protected set; }
-        public virtual AtivoInativoEnum Situacao { get; protected set; }
+        public virtual bool Situacao { get; protected set; }
         public virtual DateTime CriadoEm { get; protected set; }
 
         protected  Usuario()
@@ -68,7 +67,7 @@ namespace bookfly.Domain.Usuarios.Entities
             ReceberSpoilers = receberSpoilers;
         }
 
-        public virtual void SetSituacao(AtivoInativoEnum situacao)
+        public virtual void SetSituacao(bool situacao)
         {
             Situacao = situacao;
         }
@@ -82,7 +81,7 @@ namespace bookfly.Domain.Usuarios.Entities
 
         public virtual void Ativar()
         {
-            Situacao = AtivoInativoEnum.Ativo;
+            Situacao = true;
         }
 
     }

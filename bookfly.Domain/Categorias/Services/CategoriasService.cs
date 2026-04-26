@@ -3,7 +3,6 @@ using bookfly.Domain.Categorias.Entities;
 using bookfly.Domain.Categorias.Repositories;
 using bookfly.Domain.Categorias.Repositories.Filters;
 using bookfly.Domain.Categorias.Services.Interfaces;
-using bookfly.Domain.Enums;
 
 namespace bookfly.Domain.Categorias.Services
 {
@@ -40,18 +39,12 @@ namespace bookfly.Domain.Categorias.Services
         {
             Categoria categoria = await ValidarAsync(id, cancellationToken);
 
-            switch (categoria.Situacao)
-            {
-                case AtivoInativoEnum.Ativo:
-                    categoria.SetSituacao(AtivoInativoEnum.Inativo);
-                    break;
-                case AtivoInativoEnum.Inativo:
-                    categoria.SetSituacao(AtivoInativoEnum.Ativo);
-                    break;
-            }
+            categoria.SetSituacao(!categoria.Situacao);
 
             await categoriaRepository.EditarAsync(categoria, cancellationToken);
+        await categoriaRepository.EditarAsync(categoria, cancellationToken);
         }
+        
 
         public async Task<Categoria> ValidarAsync(int categoriaId, CancellationToken cancellationToken)
         {

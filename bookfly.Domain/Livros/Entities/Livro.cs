@@ -1,6 +1,5 @@
 
 using bookfly.Domain.Categorias.Entities;
-using bookfly.Domain.Enums;
 
 namespace bookfly.Domain.Livros.Entities
 {
@@ -15,7 +14,7 @@ namespace bookfly.Domain.Livros.Entities
         public virtual DateTime DataLancamento { get; protected set; }
         public virtual string UrlImagem { get; protected set; }
         public virtual int CategoriaId { get; protected set; }
-        public virtual AtivoInativoEnum Situacao { get; protected set; }
+        public virtual bool Situacao { get; protected set; }
 
         public Livro()
         {
@@ -100,9 +99,9 @@ namespace bookfly.Domain.Livros.Entities
             CategoriaId = categoriaId;
         }
 
-        public virtual void SetSituacao(AtivoInativoEnum situacao)
+        public virtual void SetSituacao(bool situacao)
         {
-            if (!Enum.IsDefined(typeof(AtivoInativoEnum), situacao))
+            if (!Enum.IsDefined(typeof(bool), situacao))
                 throw new Exception("Situacao");
 
             Situacao = situacao;
@@ -110,7 +109,7 @@ namespace bookfly.Domain.Livros.Entities
 
         public virtual void Ativar()
         {
-            Situacao = AtivoInativoEnum.Ativo;
+            Situacao = true;
         }
     }
 }
