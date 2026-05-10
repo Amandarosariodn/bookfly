@@ -45,8 +45,8 @@ namespace bookfly.Infra.Categorias.Repositories
         public async Task<List<Categoria>> ListarAsync(CategoriaFiltro categoria, CancellationToken cancellationToken)
         {
 
-            var query = _session.Query<Categoria>();
 
+            var query = _session.Query<Categoria>();
 
             if (!string.IsNullOrEmpty(categoria.Nome))
                 query = query.Where(c => c.Nome.Contains(categoria.Nome));

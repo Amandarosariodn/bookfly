@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using bookfly.Domain.Livros.Entities;
 using bookfly.Domain.Livros.Repositories;
 using NHibernate;

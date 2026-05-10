@@ -1,11 +1,12 @@
 using bookfly.Domain.Livros.Entities;
 using bookfly.Domain.Usuarios.Entities;
 
-namespace bookfly.Domain.Estante.Entities
+namespace bookfly.Domain.Estantes.Entities
 {
     public class Estante
     {
         public virtual int Id { get; protected set; }
+        public virtual string Nome { get; protected set; }
         public virtual Usuario UsuarioId { get; protected set; }
         public virtual Livro LivroId { get; protected set; }
         public virtual bool Status { get; protected set; }
@@ -25,6 +26,13 @@ namespace bookfly.Domain.Estante.Entities
             SetFavorito(favorito);
             SetIniciadoEm(iniciadoEm);
             SetFinalizadoEm(finalizadoEm);
+        }
+        public virtual void SetNome(string nome)
+        {
+            if (string.IsNullOrEmpty(nome))
+                throw new Exception("nome não pode ser nulo ou vazio");
+
+            Nome = nome;
         }
 
         public virtual void SetUsuarioId(Usuario usuarioId)
