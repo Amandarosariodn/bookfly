@@ -11,7 +11,12 @@ using Mapster;
 
 namespace bookfly.Application.Usuarios.Services
 {
-    public class UsuariosAppService(IUsuariosServices usuariosServices, IUsuariosRepository usuariosRepository, IUnitOfWork unitOfWork) : IUsuariosAppService
+    public class UsuariosAppService(
+        IUsuariosServices usuariosServices,
+        IUsuariosRepository usuariosRepository,
+        IUnitOfWork unitOfWork,
+        IJwtService jwtService,
+        ISenhaService senhaService) : IUsuariosAppService
     {
         public async Task<UsuarioResponse> EditarAsync(int id, EditarUsuarioRequest request, CancellationToken cancellationToken)
         {
@@ -36,6 +41,7 @@ namespace bookfly.Application.Usuarios.Services
             try
             {
                 InserirUsuarioCommand comando = request.Adapt<InserirUsuarioCommand>();
+                comando.SenhaHash = senhaService.GerarHash(request.Senha);
                 await unitOfWork.BeginAsync(cancellationToken);
                 Usuario usuario = await usuariosServices.InserirAsync(comando, cancellationToken);
                 await unitOfWork.CommitAsync(cancellationToken);
@@ -73,6 +79,32 @@ namespace bookfly.Application.Usuarios.Services
         {
             Usuario usuario = await usuariosServices.ValidarAsync(id, cancellationToken);
             return usuario.Adapt<UsuarioResponse>();
+        }
+
+        public async Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrWhiteSpace(request.Email) && string.IsNullOrWhiteSpace(request.Username))
+                throw new UnauthorizedAccessException("Email ou username é obrigatório.");
+
+            Usuario? usuario = await usuariosRepository.RecuperarPorEmailOuUsernameAsync(
+                request.Email,
+                request.Username,
+                cancellationToken
+            );
+
+            if (usuario == null || !usuario.Situacao)
+                throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
+
+            bool senhaValida = senhaService.VerificarSenha(request.Senha, usuario.SenhaHash);
+
+            if (!senhaValida)
+                throw new UnauthorizedAccessException("Usuário ou senha inválidos.");
+
+            return new LoginResponse
+            {
+                Token = jwtService.GerarToken(usuario),
+                Usuario = usuario.Adapt<UsuarioResponse>()
+            };
         }
     }
 }

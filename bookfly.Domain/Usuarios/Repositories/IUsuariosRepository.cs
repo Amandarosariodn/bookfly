@@ -11,6 +11,7 @@ namespace bookfly.Domain.Usuarios.Repositories
         Task EditarAsync(Usuario usuario, CancellationToken cancellationToken);
         Task<List<Usuario>> ListarAsync(UsuarioFiltro filtro, CancellationToken cancellationToken);
         Task<Usuario> ValidarAsync(int usuarioId, CancellationToken cancellationToken);
+        Task<Usuario?> RecuperarPorEmailOuUsernameAsync(string? email, string? username, CancellationToken cancellationToken);
 
     }
 }
