@@ -93,6 +93,8 @@ builder.Services.AddScoped<ICategoriasAppService, CategoriasAppService>();
 builder.Services.AddScoped<ILivrosAppServices, LivrosAppServices>();
 builder.Services.AddScoped<IUsuariosAppService, UsuariosAppService>();
 builder.Services.AddScoped<ISeguidorUsuariosAppService, SeguidorUsuarioAppService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<ISenhaService, SenhaService>();
 
 #endregion
 var app = builder.Build();
