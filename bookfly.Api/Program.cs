@@ -55,9 +55,12 @@ builder.Services.AddScoped<IMapper, ServiceMapper>();
 #region NHibernate
 builder.Services.AddSingleton<NHibernate.ISessionFactory>(_ =>
 {
-    return NHibernateSessionFactory.Create(
-        builder.Configuration.GetConnectionString("DefaultConnection")!
-    );
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+    if (string.IsNullOrWhiteSpace(connectionString))
+        throw new InvalidOperationException("Connection string 'DefaultConnection' não configurada.");
+
+    return NHibernateSessionFactory.Create(connectionString);
 });
 
 
@@ -77,7 +80,7 @@ builder.Services.AddScoped<ILivrosService, LivrosService>();
 builder.Services.AddScoped<IUsuariosServices, UsuariosService>();
 builder.Services.AddScoped<ISeguidorUsuariosService, SeguidorUsuariosService>();
 
-builder.Services.AddHttpClient<IGoogleBooksService,GoogleBooksService>();
+builder.Services.AddHttpClient<IGoogleBooksService, GoogleBooksService>();
 #region Repositories
 builder.Services.AddScoped<ICategoriasRepository, CategoriaRepository>();
 builder.Services.AddScoped<ILivrosRepository, LivroRepository>();
