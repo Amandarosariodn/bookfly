@@ -19,7 +19,7 @@ namespace bookfly.Infra.GoogleBooks.Services
             _httpClient = httpClient;
             _configuration = configuration;
 
-            _apiKey = _configuration["GoogleBooks:ApiKey"];
+            _apiKey = _configuration["GOOGLE_BOOKS_API_KEY"];
         }
 
         public async Task<Item?> BuscarPorIdAsync(
