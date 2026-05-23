@@ -1,17 +1,26 @@
 # Build
-bin/
-obj/
+**/bin/
+**/obj/
 
 # Visual Studio
 .vs/
 *.user
 *.suo
 
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
 # Logs
 *.log
 
 # Arquivos de ambiente
 appsettings.Development.json
+.env
+secrets.json
+config.local.json
 
 # Banco local
 *.mdf
@@ -24,8 +33,5 @@ packages/
 *.tmp
 *.cache
 
-# Arquivos com chaves
-appsettings.Development.json
-.env
-secrets.json
-config.local.json
+# DLLs
+*.dll
