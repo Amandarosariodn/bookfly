@@ -6,26 +6,21 @@ namespace bookfly.Domain.Estantes.Entities
     public class Estante
     {
         public virtual int Id { get; protected set; }
-        public virtual string Nome { get; protected set; }
         public virtual Usuario UsuarioId { get; protected set; }
-        public virtual Livro LivroId { get; protected set; }
-        public virtual bool Status { get; protected set; }
-        public virtual int PaginaAtual { get; protected set; }
-        public virtual bool Favorito { get; protected set; }
-        public virtual DateTime IniciadoEm { get; protected set; }
-        public virtual DateTime FinalizadoEm { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual string Descricao { get; protected set; }
+        public virtual bool Privada { get; protected set; }
+        public virtual DateTime CriadoEm { get; protected set; }
 
         public Estante() { }
 
-        public Estante(Usuario usuarioId, Livro livroId, bool status, int paginaAtual, bool favorito, DateTime iniciadoEm, DateTime finalizadoEm)
+        public Estante(Usuario usuarioId, string nome, string descricao, bool privada, DateTime criadoEm)
         {
             SetUsuarioId(usuarioId);
-            SetLivroId(livroId);
-            Ativar();
-            SetPaginaAtual(paginaAtual);
-            SetFavorito(favorito);
-            SetIniciadoEm(iniciadoEm);
-            SetFinalizadoEm(finalizadoEm);
+            SetNome(nome);
+            SetDescricao(descricao);
+            SetPrivada(privada);
+            SetCriadoEm(criadoEm);
         }
         public virtual void SetNome(string nome)
         {
@@ -34,6 +29,13 @@ namespace bookfly.Domain.Estantes.Entities
 
             Nome = nome;
         }
+        public virtual void SetDescricao(string descricao)
+        {
+            if (string.IsNullOrEmpty(descricao))
+                throw new Exception("Descricao não pode ser nulo ou vazio");
+
+            Descricao = descricao;
+        }
 
         public virtual void SetUsuarioId(Usuario usuarioId)
         {
@@ -41,51 +43,20 @@ namespace bookfly.Domain.Estantes.Entities
                 throw new Exception("Usuário inválido");
             UsuarioId = usuarioId;
         }
-        public virtual void SetLivroId(Livro livroId)
+
+
+        public virtual void SetPrivada(bool privada)
         {
-            if (livroId.Id < 0)
-                throw new Exception("Livro inválido");
-            LivroId = livroId;
-        }
-        public virtual void SetStatus(bool status)
-        {
-            Status = status;
+            Privada = privada;
         }
 
-        public virtual void Ativar()
-        {
-            Status = true;
-        }
 
-        public virtual void SetPaginaAtual(int paginaAtual)
+        public virtual void SetCriadoEm(DateTime criadoEm)
         {
-            if (paginaAtual < 0)
-                throw new Exception("paginaAtual inválida");
-            PaginaAtual = paginaAtual;
-        }
-
-        public virtual void SetFavorito(bool favorito)
-        {
-            Favorito = favorito;
-        }
-        public virtual void Favoritar()
-        {
-            Favorito = true;
-        }
-
-        public virtual void SetIniciadoEm(DateTime iniciadoEm)
-        {
-        if(iniciadoEm < DateTime.MinValue || iniciadoEm > DateTime.MaxValue)
-                throw new Exception("Data inválida");
-            IniciadoEm = DateTime.Now;
-        }
-
-        public virtual void SetFinalizadoEm(DateTime finalizadoEm)
-        {
-            if(finalizadoEm < DateTime.MinValue || finalizadoEm > DateTime.MaxValue)
+            if(criadoEm < DateTime.MinValue || criadoEm > DateTime.MaxValue)
                 throw new Exception("Data inválida");
 
-            FinalizadoEm = finalizadoEm;
+            CriadoEm = criadoEm;
         }
 
     }
