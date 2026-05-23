@@ -95,11 +95,8 @@ builder.Services.AddScoped<ISeguidorUsuariosAppService, SeguidorUsuarioAppServic
 var app = builder.Build();
 
 #region Middleware pipeline
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // app.UseHttpsRedirection();
 
