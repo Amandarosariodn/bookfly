@@ -57,7 +57,7 @@ public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken
 
         private static Usuario Instanciar(InserirUsuarioCommand usuario)
         {
-            return new Usuario(usuario.Email, usuario.Username, usuario.SenhaHash, usuario.Biografia, usuario.UrlImagem, usuario.ReceberSpoilers, usuario.CriadoEm);
+            return new Usuario(usuario.Email, usuario.Username, usuario.SenhaHash);
         }
 
         public async Task<Usuario> ValidarAsync(int usuarioId, CancellationToken cancellationToken)

@@ -14,21 +14,18 @@ namespace bookfly.Domain.Usuarios.Entities
         public virtual bool Situacao { get; protected set; }
         public virtual DateTime CriadoEm { get; protected set; }
 
-        protected  Usuario()
+        protected Usuario()
         {
         }
 
-        public Usuario(string email, string username, string senhaHash, string biografia, string urlImagem, bool receberSpoilers, DateTime criadoEm)
+        public Usuario(string email, string username, string senhaHash)
         {
             SetEmail(email);
             SetUsername(username);
             SetSenhaHash(senhaHash);
-            SetBiografia(biografia);
-            SetUrlImagem(urlImagem);
-            SetReceberSpoilers(receberSpoilers);
-            SetCriadoEm(criadoEm);
+            CriadoEm = DateTime.Now;
             Ativar();
-           
+
         }
 
         public virtual void SetEmail(string email)
@@ -51,9 +48,9 @@ namespace bookfly.Domain.Usuarios.Entities
                 throw new ArgumentException("A senha não pode ser vazia.");
             SenhaHash = senhaHash;
         }
-        
+
         public virtual void SetBiografia(string biografia)
-        {  
+        {
             Biografia = biografia;
         }
 
@@ -74,7 +71,7 @@ namespace bookfly.Domain.Usuarios.Entities
 
         public virtual void SetCriadoEm(DateTime criadoEm)
         {
-           if (criadoEm > DateTime.UtcNow)
+            if (criadoEm > DateTime.UtcNow)
                 throw new ArgumentException("A data de criação deve ser válida.");
             CriadoEm = criadoEm;
         }
