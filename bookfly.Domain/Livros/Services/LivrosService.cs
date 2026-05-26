@@ -83,13 +83,13 @@ namespace bookfly.Domain.Livros.Services
         }
 
         public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken)
-{
-    Livro livro = await ValidarAsync(id, cancellationToken);
+        {
+            Livro livro = await ValidarAsync(id, cancellationToken);
 
-    livro.SetSituacao(!livro.Situacao);
+            livro.SetSituacao(!livro.Situacao);
 
-    await livrosRepository.EditarAsync(livro, cancellationToken);
-}
+            await livrosRepository.EditarAsync(livro, cancellationToken);
+        }
 
         public async Task<Livro> CriarLivroViaGoogleAsync(
         string googleBooksId,
