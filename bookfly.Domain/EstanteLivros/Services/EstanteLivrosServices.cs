@@ -72,5 +72,14 @@ namespace bookfly.Domain.EstanteLivros.Services
                 throw new Exception("Livro na estante não encontrado");
             return estanteLivro;
         }
+
+        public async Task AtualizarPaginaAtualAsync(int id, int paginaAtual, CancellationToken cancellationToken)
+        {
+            EstanteLivro? estanteLivro = await ValidarAsync(id, cancellationToken);
+            estanteLivro?.SetPaginaAtual(paginaAtual);
+            await repository.EditarAsync(estanteLivro, cancellationToken);
+
+        }
+        
     }
 }
