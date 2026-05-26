@@ -111,3 +111,26 @@ app.MapControllers();
 #endregion
 
 app.Run();
+
+//integração com o front - end
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowVercel",
+        policy =>
+        {
+            policy.WithOrigins("https://bookfly-ivory.vercel.app/" ) 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+var appFront = builder.Build();
+
+// 2. Ative o CORS antes de outros middlewares de rota
+app.UseCors("AllowVercel");
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
