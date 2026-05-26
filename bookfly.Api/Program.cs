@@ -32,7 +32,6 @@ using bookfly.Domain.SeguidorUsuarios.Services.Interfaces;
 using bookfly.Domain.SeguidorUsuarios.Entities;
 using bookfly.Domain.SeguidorUsuarios.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 #region Controllers
@@ -42,6 +41,24 @@ builder.Services.AddControllers();
 #region Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+#endregion
+
+#region CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy
+                .WithOrigins(
+                    "http://127.0.0.1:5500",
+                    "http://localhost:5500",
+                    "https://bookfly-ivory.vercel.app"
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 #endregion
 
 #region Mapster
@@ -63,24 +80,28 @@ builder.Services.AddSingleton<NHibernate.ISessionFactory>(_ =>
     return NHibernateSessionFactory.Create(connectionString);
 });
 
-
 builder.Services.AddScoped<NHibernate.ISession>(sp =>
 {
     var factory = sp.GetRequiredService<NHibernate.ISessionFactory>();
     return factory.OpenSession();
 });
-
 #endregion
 
 #region Unit of Work
 builder.Services.AddScoped<IUnitOfWork, NHibernateUnitOfWork>();
 #endregion
+
+#region Domain Services
 builder.Services.AddScoped<ICategoriasService, CategoriasService>();
 builder.Services.AddScoped<ILivrosService, LivrosService>();
 builder.Services.AddScoped<IUsuariosServices, UsuariosService>();
 builder.Services.AddScoped<ISeguidorUsuariosService, SeguidorUsuariosService>();
+#endregion
 
+#region External Services
 builder.Services.AddHttpClient<IGoogleBooksService, GoogleBooksService>();
+#endregion
+
 #region Repositories
 builder.Services.AddScoped<ICategoriasRepository, CategoriaRepository>();
 builder.Services.AddScoped<ILivrosRepository, LivroRepository>();
@@ -95,42 +116,23 @@ builder.Services.AddScoped<IUsuariosAppService, UsuariosAppService>();
 builder.Services.AddScoped<ISeguidorUsuariosAppService, SeguidorUsuarioAppService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<ISenhaService, SenhaService>();
-
 #endregion
+
 var app = builder.Build();
 
 #region Middleware pipeline
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// app.UseHttpsRedirection();
-
-// app.UseAuthorization();
-
-app.MapControllers();
-#endregion
-
-app.Run();
-
-//integração com o front - end
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowVercel",
-        policy =>
-        {
-            policy.WithOrigins("https://bookfly-ivory.vercel.app/" ) 
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
-});
-
-var appFront = builder.Build();
-
-// 2. Ative o CORS antes de outros middlewares de rota
-app.UseCors("AllowVercel");
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
+
 app.UseAuthorization();
+
 app.MapControllers();
+
+#endregion
 
 app.Run();
