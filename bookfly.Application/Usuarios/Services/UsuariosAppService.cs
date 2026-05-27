@@ -83,11 +83,10 @@ namespace bookfly.Application.Usuarios.Services
 
         public async Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrWhiteSpace(request.Email) && string.IsNullOrWhiteSpace(request.Username))
-                throw new UnauthorizedAccessException("Email ou username é obrigatório.");
+            if (string.IsNullOrWhiteSpace(request.Username))
+                throw new UnauthorizedAccessException("Username é obrigatório.");
 
-            Usuario? usuario = await usuariosRepository.RecuperarPorEmailOuUsernameAsync(
-                request.Email,
+            Usuario? usuario = await usuariosRepository.RecuperarPorUsernameAsync(
                 request.Username,
                 cancellationToken
             );

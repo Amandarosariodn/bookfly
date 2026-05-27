@@ -9,6 +9,7 @@ namespace bookfly.Domain.EstanteLivros.Entities
         public virtual Estante Estante { get; protected set; }
         public virtual Livro Livro { get; protected set; }
         public virtual bool Status { get; protected set; }
+    //    public virtual StatusLeituraEnum StatusLeitura  { get; protected set; }
         public virtual int PaginaAtual { get; protected set; }
         public virtual bool Favorito { get; protected set; }
         public virtual DateTime IniciadoEm { get; protected set; }
