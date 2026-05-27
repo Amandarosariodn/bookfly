@@ -39,17 +39,28 @@ namespace bookfly.Application.Usuarios.Services
             if (!int.TryParse(partes[1], out int iterations))
                 return false;
 
-            byte[] salt = Convert.FromBase64String(partes[2]);
-            byte[] hashSalvo = Convert.FromBase64String(partes[3]);
-            byte[] hashInformado = Rfc2898DeriveBytes.Pbkdf2(
-                senha,
-                salt,
-                iterations,
-                HashAlgorithmName.SHA256,
-                hashSalvo.Length
-            );
+            try
+            {
+                byte[] salt = Convert.FromBase64String(partes[2]);
+                byte[] hashSalvo = Convert.FromBase64String(partes[3]);
+                byte[] hashInformado = Rfc2898DeriveBytes.Pbkdf2(
+                    senha,
+                    salt,
+                    iterations,
+                    HashAlgorithmName.SHA256,
+                    hashSalvo.Length
+                );
 
-            return CryptographicOperations.FixedTimeEquals(hashSalvo, hashInformado);
+                return CryptographicOperations.FixedTimeEquals(hashSalvo, hashInformado);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+            catch (CryptographicException)
+            {
+                return false;
+            }
         }
     }
 }

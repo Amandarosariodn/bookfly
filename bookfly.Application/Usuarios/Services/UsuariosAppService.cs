@@ -86,8 +86,10 @@ namespace bookfly.Application.Usuarios.Services
             if (string.IsNullOrWhiteSpace(request.Username))
                 throw new UnauthorizedAccessException("Username ou email é obrigatório.");
 
+            string usernameOuEmail = request.Username.Trim();
+
             Usuario? usuario = await usuariosRepository.RecuperarPorUsernameOuEmailAsync(
-                request.Username,
+                usernameOuEmail,
                 cancellationToken
             );
 

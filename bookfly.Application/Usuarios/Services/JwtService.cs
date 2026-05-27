@@ -12,14 +12,20 @@ namespace bookfly.Application.Usuarios.Services
     {
         public string GerarToken(Usuario usuario)
         {
-            string secretKey = configuration["Jwt:SecretKey"]
-                ?? throw new InvalidOperationException("Jwt:SecretKey não configurada.");
+            string secretKey = configuration["Jwt:SecretKey"];
 
-            string issuer = configuration["Jwt:Issuer"]
-                ?? throw new InvalidOperationException("Jwt:Issuer não configurado.");
+            if (string.IsNullOrWhiteSpace(secretKey))
+                throw new InvalidOperationException("Jwt:SecretKey não configurada.");
 
-            string audience = configuration["Jwt:Audience"]
-                ?? throw new InvalidOperationException("Jwt:Audience não configurado.");
+            string issuer = configuration["Jwt:Issuer"];
+
+            if (string.IsNullOrWhiteSpace(issuer))
+                throw new InvalidOperationException("Jwt:Issuer não configurado.");
+
+            string audience = configuration["Jwt:Audience"];
+
+            if (string.IsNullOrWhiteSpace(audience))
+                throw new InvalidOperationException("Jwt:Audience não configurado.");
 
             string? expirationMinutesConfiguration = configuration["Jwt:ExpirationMinutes"];
             int expirationMinutes = int.TryParse(expirationMinutesConfiguration, out int parsedExpirationMinutes)
