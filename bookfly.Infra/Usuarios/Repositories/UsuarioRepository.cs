@@ -49,13 +49,14 @@ namespace bookfly.Infra.Usuarios.Repositories
             return usuario;
         }
 
-        public async Task<Usuario?> RecuperarPorUsernameAsync(string username, CancellationToken cancellationToken)
+        public async Task<Usuario?> RecuperarPorUsernameOuEmailAsync(string usernameOuEmail, CancellationToken cancellationToken)
         {
             var query = _session.Query<Usuario>();
 
             return await query
                 .Where(usuario =>
-                    !string.IsNullOrEmpty(username) && usuario.Username == username)
+                    !string.IsNullOrEmpty(usernameOuEmail) &&
+                    (usuario.Username == usernameOuEmail || usuario.Email == usernameOuEmail))
                 .FirstOrDefaultAsync(cancellationToken);
         }
     }
