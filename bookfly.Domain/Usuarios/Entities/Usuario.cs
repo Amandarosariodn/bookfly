@@ -30,13 +30,19 @@ namespace bookfly.Domain.Usuarios.Entities
 
         public virtual void SetEmail(string email)
         {
+            if(email.Length < 7)
+                throw new ArgumentException("O email deve conter pelo menos 7 caracteres.");
             if (string.IsNullOrEmpty(email))
                 throw new ArgumentException("O email não pode ser vazio.");
+            if(!email.Contains("@"))
+                throw new ArgumentException("O email deve ser válido.");
             Email = email;
         }
 
         public virtual void SetUsername(string username)
         {
+        if (username.Length < 3)
+                throw new ArgumentException("O nome de usuário deve conter pelo menos 3 caracteres.");
             if (string.IsNullOrEmpty(username))
                 throw new ArgumentException("O nome de usuário não pode ser vazio.");
             Username = username;
