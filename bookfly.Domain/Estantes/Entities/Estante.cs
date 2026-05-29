@@ -1,4 +1,3 @@
-using bookfly.Domain.Livros.Entities;
 using bookfly.Domain.Usuarios.Entities;
 
 namespace bookfly.Domain.Estantes.Entities
@@ -39,8 +38,9 @@ namespace bookfly.Domain.Estantes.Entities
 
         public virtual void SetUsuarioId(Usuario usuarioId)
         {
-            if (usuarioId.Id < 0)
+            if (usuarioId == null || usuarioId.Id <= 0)
                 throw new Exception("Usuário inválido");
+
             UsuarioId = usuarioId;
         }
 
@@ -53,10 +53,15 @@ namespace bookfly.Domain.Estantes.Entities
 
         public virtual void SetCriadoEm(DateTime criadoEm)
         {
-            if(criadoEm < DateTime.MinValue || criadoEm > DateTime.MaxValue)
+            if(criadoEm > DateTime.Now)
                 throw new Exception("Data inválida");
 
             CriadoEm = criadoEm;
+        }
+
+        public virtual void Ativar()
+        {
+            Privada = false;
         }
 
     }
