@@ -1,3 +1,4 @@
+using bookfly.Domain.EstanteLivros.Enums;
 using bookfly.Domain.Estantes.Entities;
 using bookfly.Domain.Livros.Entities;
 
@@ -8,26 +9,28 @@ namespace bookfly.Domain.EstanteLivros.Entities
         public virtual int Id { get; protected set; }
         public virtual Estante Estante { get; protected set; }
         public virtual Livro Livro { get; protected set; }
-        public virtual bool Status { get; protected set; }
-    //    public virtual StatusLeituraEnum StatusLeitura  { get; protected set; }
+        public virtual bool Ativo { get; protected set; }
+        public virtual StatusLeituraEnum StatusLeitura  { get; protected set; }
         public virtual int PaginaAtual { get; protected set; }
         public virtual bool Favorito { get; protected set; }
         public virtual DateTime IniciadoEm { get; protected set; }
-        public virtual DateTime FinalizadoEm { get; protected set; }
+        public virtual DateTime? FinalizadoEm { get; protected set; }
         public virtual DateTime CriadoEm { get; protected set; }
 
         protected EstanteLivro()
         {
         }
 
-        public EstanteLivro(Estante estante, Livro livro, bool status, int paginaAtual, bool favorito, DateTime iniciadoEm)
+        public EstanteLivro(Estante estante, Livro livro, bool ativo, StatusLeituraEnum statusLeitura, int paginaAtual, bool favorito, DateTime iniciadoEm, DateTime? finalizadoEm)
         {
             SetEstante(estante);
             SetLivro(livro);
-            SetStatus(status);
+            SetAtivo(ativo);
+            SetStatusLeitura(statusLeitura);
             SetPaginaAtual(paginaAtual);
             SetFavorito(favorito);
             SetIniciadoEm(iniciadoEm);
+            SetFinalizadoEm(finalizadoEm);
             CriadoEm = DateTime.Now;
         }
 
@@ -49,14 +52,27 @@ namespace bookfly.Domain.EstanteLivros.Entities
             Livro = livro;
         }
 
-        public virtual void SetStatus(bool status)
+        public virtual void SetAtivo(bool ativo)
         {
-            Status = status;
+            Ativo = ativo;
         }
+
+        public virtual void SetStatusLeitura(StatusLeituraEnum statusLeitura)
+        {
+            if (!Enum.IsDefined(typeof(StatusLeituraEnum), statusLeitura))
+                throw new Exception("Status de leitura inválido");
+
+            StatusLeitura = statusLeitura;
+        }
+
         public virtual void SetPaginaAtual(int paginaAtual)
         {
             if (paginaAtual < 0)
-                throw new ArgumentOutOfRangeException(nameof(paginaAtual));
+                throw new Exception("Página atual não pode ser negativa");
+
+            if (Livro != null && paginaAtual > Livro.TotalPaginas)
+                throw new Exception("Página atual não pode ser maior que o total de páginas do livro");
+
             PaginaAtual = paginaAtual;
         }
         public virtual void SetFavorito(bool favorito)
@@ -65,14 +81,28 @@ namespace bookfly.Domain.EstanteLivros.Entities
         }
         public virtual void SetIniciadoEm(DateTime iniciadoEm)
         {
+            if (iniciadoEm > DateTime.Now)
+                throw new Exception("Data de início não pode ser futura");
+
             IniciadoEm = iniciadoEm;
         }
-        public virtual void SetFinalizadoEm(DateTime finalizadoEm)
+
+        public virtual void SetFinalizadoEm(DateTime? finalizadoEm)
         {
+            if (finalizadoEm.HasValue && finalizadoEm.Value > DateTime.Now)
+                throw new Exception("Data de finalização não pode ser futura");
+
+            if (finalizadoEm.HasValue && IniciadoEm != default && finalizadoEm.Value < IniciadoEm)
+                throw new Exception("Data de finalização não pode ser anterior à data de início");
+
             FinalizadoEm = finalizadoEm;
         }
+
         public virtual void SetCriadoEm(DateTime criadoEm)
         {
+            if (criadoEm > DateTime.Now)
+                throw new Exception("Data de criação não pode ser futura");
+
             CriadoEm = criadoEm;
         }
     }

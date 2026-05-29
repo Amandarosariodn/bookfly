@@ -1,8 +1,8 @@
 using bookfly.Domain.EstanteLivros.Enums;
 
-namespace bookfly.Domain.EstanteLivros.Repositories.Filters
+namespace bookfly.Application.EstanteLivros.DataTransfer.Requests
 {
-    public class EstanteLivroFiltro
+    public class ListarEstanteLivroRequest
     {
         public int? EstanteId { get; set; }
         public int? LivroId { get; set; }

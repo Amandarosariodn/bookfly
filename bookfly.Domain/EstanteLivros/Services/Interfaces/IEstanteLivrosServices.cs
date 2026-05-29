@@ -7,9 +7,10 @@ namespace bookfly.Domain.EstanteLivros.Services.Interfaces
     public interface IEstanteLivrosServices
     {
         Task<EstanteLivro?> ValidarAsync(int livroId, CancellationToken cancellationToken);
-        Task<EstanteLivro> InserirEstanteLivroAsync(InserirEstanteLivroCommand comando,int estanteLivroId, CancellationToken cancellationToken);
+        Task<EstanteLivro> InserirEstanteLivroAsync(InserirEstanteLivroCommand comando, CancellationToken cancellationToken);
         Task<EstanteLivro> EditarEstanteLivroAsync(EditarEstanteLivroCommand comando, int id, CancellationToken cancellationToken);
         Task<List<EstanteLivro>> ListarAsync(EstanteLivroFiltro filtro,CancellationToken cancellationToken);
         EstanteLivro Instanciar(InserirEstanteLivroCommand comando);
+        Task AtualizarPaginaAtualAsync(int id, int paginaAtual, CancellationToken cancellationToken);
     }
 }

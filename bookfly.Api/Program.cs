@@ -31,6 +31,18 @@ using bookfly.Infra.SeguidorUsuarios.Repositories;
 using bookfly.Domain.SeguidorUsuarios.Services.Interfaces;
 using bookfly.Domain.SeguidorUsuarios.Entities;
 using bookfly.Domain.SeguidorUsuarios.Services;
+using bookfly.Application.EstanteLivros.Services;
+using bookfly.Application.EstanteLivros.Services.Interfaces;
+using bookfly.Application.Estantes.Services;
+using bookfly.Application.Estantes.Services.Interfaces;
+using bookfly.Domain.EstanteLivros.Repositories.Interfaces;
+using bookfly.Domain.EstanteLivros.Services;
+using bookfly.Domain.EstanteLivros.Services.Interfaces;
+using bookfly.Domain.Estantes.Repositories.Interfaces;
+using bookfly.Domain.Estantes.Services;
+using bookfly.Domain.Estantes.Services.Interfaces;
+using bookfly.Infra.EstanteLivros.Repositories;
+using bookfly.Infra.Estantes.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,6 +108,8 @@ builder.Services.AddScoped<ICategoriasService, CategoriasService>();
 builder.Services.AddScoped<ILivrosService, LivrosService>();
 builder.Services.AddScoped<IUsuariosServices, UsuariosService>();
 builder.Services.AddScoped<ISeguidorUsuariosService, SeguidorUsuariosService>();
+builder.Services.AddScoped<IEstanteLivrosServices, EstanteLivrosServices>();
+builder.Services.AddScoped<IEstantesService, EstanteService>();
 #endregion
 
 #region External Services
@@ -107,6 +121,8 @@ builder.Services.AddScoped<ICategoriasRepository, CategoriaRepository>();
 builder.Services.AddScoped<ILivrosRepository, LivroRepository>();
 builder.Services.AddScoped<IUsuariosRepository, UsuarioRepository>();
 builder.Services.AddScoped<ISeguidorUsuarioRepository, SeguidorUsuarioRepository>();
+builder.Services.AddScoped<IEstanteRepository, EstanteRepository>();
+builder.Services.AddScoped<IEstanteLivrosRepository, EstanteLivroRepository>();
 #endregion
 
 #region Application Services
@@ -114,6 +130,8 @@ builder.Services.AddScoped<ICategoriasAppService, CategoriasAppService>();
 builder.Services.AddScoped<ILivrosAppServices, LivrosAppServices>();
 builder.Services.AddScoped<IUsuariosAppService, UsuariosAppService>();
 builder.Services.AddScoped<ISeguidorUsuariosAppService, SeguidorUsuarioAppService>();
+builder.Services.AddScoped<IEstanteLivrosAppServices, EstanteLivrosAppService>();
+builder.Services.AddScoped<IEstantesAppService, EstantesAppService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<ISenhaService, SenhaService>();
 #endregion

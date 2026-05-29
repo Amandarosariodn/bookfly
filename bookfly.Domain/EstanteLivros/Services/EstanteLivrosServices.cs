@@ -16,28 +16,21 @@ namespace bookfly.Domain.EstanteLivros.Services
 
             estanteLivro.SetEstante(comando.Estante);
             estanteLivro.SetLivro(comando.Livro);
-            estanteLivro.SetStatus(comando.Status);
+            estanteLivro.SetAtivo(comando.Ativo);
+            estanteLivro.SetStatusLeitura(comando.StatusLeitura);
             estanteLivro.SetPaginaAtual(comando.PaginaAtual);
             estanteLivro.SetFavorito(comando.Favorito);
             estanteLivro.SetIniciadoEm(comando.IniciadoEm);
+            estanteLivro.SetFinalizadoEm(comando.FinalizadoEm);
 
             await repository.EditarAsync(estanteLivro, cancellationToken);
             return estanteLivro;
 
         }
 
-        public async Task<EstanteLivro> InserirEstanteLivroAsync(InserirEstanteLivroCommand comando, int estanteLivroId, CancellationToken cancellationToken)
+        public async Task<EstanteLivro> InserirEstanteLivroAsync(InserirEstanteLivroCommand comando, CancellationToken cancellationToken)
         {
-            EstanteLivro? estanteLivro = await ValidarAsync(estanteLivroId, cancellationToken);
-            if (estanteLivro is null)
-                throw new Exception("Livro na estante não encontrado");
-
-            estanteLivro.SetEstante(comando.Estante);
-            estanteLivro.SetLivro(comando.Livro);
-            estanteLivro.SetStatus(comando.Status);
-            estanteLivro.SetPaginaAtual(comando.PaginaAtual);
-            estanteLivro.SetFavorito(comando.Favorito);
-            estanteLivro.SetIniciadoEm(comando.IniciadoEm);
+            EstanteLivro estanteLivro = Instanciar(comando);
 
             await repository.InserirAsync(estanteLivro, cancellationToken);
             return estanteLivro;
@@ -48,10 +41,12 @@ namespace bookfly.Domain.EstanteLivros.Services
             return new EstanteLivro(
                 estante: comando.Estante,
                 livro: comando.Livro,
-                status: comando.Status,
+                ativo: comando.Ativo,
+                statusLeitura: comando.StatusLeitura,
                 paginaAtual: comando.PaginaAtual,
                 favorito: comando.Favorito,
-                iniciadoEm: comando.IniciadoEm
+                iniciadoEm: comando.IniciadoEm,
+                finalizadoEm: comando.FinalizadoEm
             );
         }
 
@@ -75,11 +70,13 @@ namespace bookfly.Domain.EstanteLivros.Services
 
         public async Task AtualizarPaginaAtualAsync(int id, int paginaAtual, CancellationToken cancellationToken)
         {
-            EstanteLivro? estanteLivro = await ValidarAsync(id, cancellationToken);
-            estanteLivro?.SetPaginaAtual(paginaAtual);
+            EstanteLivro estanteLivro = await ValidarAsync(id, cancellationToken);
+            estanteLivro.SetPaginaAtual(paginaAtual);
             await repository.EditarAsync(estanteLivro, cancellationToken);
 
         }
+
         
+
     }
 }
