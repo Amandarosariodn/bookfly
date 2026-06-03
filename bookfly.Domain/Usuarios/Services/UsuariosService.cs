@@ -14,12 +14,18 @@ namespace bookfly.Domain.Usuarios.Services
 
             usuario.SetEmail(comando.Email);
             usuario.SetUsername(comando.Username);
-            usuario.SetSenhaHash(comando.SenhaHash);
+            if (!string.IsNullOrWhiteSpace(comando.SenhaHash))
+            {
+                usuario.SetSenhaHash(comando.SenhaHash);
+            }
             usuario.SetBiografia(comando.Biografia);
             usuario.SetUrlImagem(comando.UrlImagem);
             usuario.SetReceberSpoilers(comando.ReceberSpoilers);
             usuario.SetSituacao(comando.Situacao);
-            usuario.SetCriadoEm(comando.CriadoEm);
+            if (comando.CriadoEm != default && comando.CriadoEm <= DateTime.UtcNow)
+            {
+                usuario.SetCriadoEm(comando.CriadoEm);
+            }
 
             await usuariosRepository.EditarAsync(usuario, cancellationToken);
             return usuario;

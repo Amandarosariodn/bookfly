@@ -143,13 +143,15 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("AllowFrontend");
-
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireCors("AllowFrontend");
 
 #endregion
 
