@@ -10,7 +10,7 @@ namespace bookfly.Domain.Avaliacoes.Repositories
         Task<IEnumerable<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken);
         Task InserirAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
         Task EditarAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
-        Task AtualizarAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
         Task ExcluirAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
+        Task FiltrarAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken);
     }
 }
