@@ -1,0 +1,13 @@
+namespace bookfly.Application.Avaliacoes.DataTransfer.Responses
+{
+    public class AvaliacaoResponse
+    {
+        public int Id { get; set; }
+        public int UsuarioId { get; set; }
+        public int LivroId { get; set; }
+        public int Nota { get; set; }
+        public string? Review { get; set; }
+        public bool ContemSpoiler { get; set; }
+        public DateTime CriadoEm { get; set; }
+    }
+}
