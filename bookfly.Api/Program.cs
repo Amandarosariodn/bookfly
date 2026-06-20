@@ -62,11 +62,13 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins(
-                    "http://127.0.0.1:5500",
-                    "http://localhost:5500",
-                    "https://bookfly-ivory.vercel.app"
-                )
+                    .WithOrigins(
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+    "https://bookfly-ivory.vercel.app"
+)
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

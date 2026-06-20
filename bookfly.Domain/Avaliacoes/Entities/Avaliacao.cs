@@ -1,0 +1,72 @@
+
+
+namespace bookfly.Domain.Avaliacoes.Entities
+{
+    public class Avaliacao
+    {
+        public int Id { get;protected set; }
+        public int UsuarioId { get; protected set; }
+        public int LivroId { get; protected set; }
+        public int Nota { get; protected set; }
+        public string? Review { get; protected set; }
+        public bool ContemSpoiler { get; protected set; }
+        public DateTime CriadoEm { get; protected set; }
+        
+        public Avaliacao()
+        {
+        }
+
+        public Avaliacao(int usuarioId, int livroId, int nota, string? review, bool contemSpoiler, DateTime criadoEm)
+        {
+            SetUsuarioId(usuarioId);
+            SetLivroId(livroId);
+            SetNota(nota);
+            SetReview(review);
+            SetContemSpoiler(contemSpoiler);
+            SetCriadoEm(criadoEm);
+        }
+            
+        
+
+        public virtual void SetUsuarioId(int usuarioId)
+        {
+            if (usuarioId <= 0)
+                throw new Exception("UsuarioId deve ser maior que zero.");
+
+            UsuarioId = usuarioId;
+        }
+
+        public virtual void SetLivroId(int livroId)
+        {
+            if (livroId <= 0)
+                throw new Exception("LivroId deve ser maior que zero.");
+
+            LivroId = livroId;
+        }
+
+        public virtual void SetNota(int nota)
+        {
+            if (nota < 1 || nota > 5)
+                throw new Exception("Nota deve ser entre 1 e 5.");
+
+            Nota = nota;
+        }
+
+        public virtual void SetReview(string? review)
+        {
+            Review = review;
+        }
+
+        public virtual void SetContemSpoiler(bool contemSpoiler)
+        {
+            ContemSpoiler = contemSpoiler;
+        }
+
+        public virtual void SetCriadoEm(DateTime criadoEm)
+        {
+            CriadoEm = criadoEm;
+        }
+
+
+    }
+}
