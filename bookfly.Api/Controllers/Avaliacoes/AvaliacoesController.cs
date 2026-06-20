@@ -35,7 +35,7 @@ namespace bookfly.Api.Controllers.Avaliacoes
         /// <param name="id">Id da categoria</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [HttpGet("{id:int}", Name = "Recuperar")]
+        [HttpGet("{id:int}", Name = "Recuperar-avaliacao")]
         [ProducesResponseType<AvaliacaoResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<AvaliacaoResponse>> RecuperarAsync(int id, CancellationToken cancellationToken)

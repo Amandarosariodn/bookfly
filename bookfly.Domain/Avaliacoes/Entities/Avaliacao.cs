@@ -4,13 +4,13 @@ namespace bookfly.Domain.Avaliacoes.Entities
 {
     public class Avaliacao
     {
-        public int Id { get;protected set; }
-        public int UsuarioId { get; protected set; }
-        public int LivroId { get; protected set; }
-        public int Nota { get; protected set; }
-        public string? Review { get; protected set; }
-        public bool ContemSpoiler { get; protected set; }
-        public DateTime CriadoEm { get; protected set; }
+        public virtual int Id { get;protected set; }
+        public virtual int UsuarioId { get; protected set; }
+        public virtual int LivroId { get; protected set; }
+        public virtual int Nota { get; protected set; }
+        public virtual string? Review { get; protected set; }
+        public virtual bool ContemSpoiler { get; protected set; }
+        public virtual DateTime CriadoEm { get; protected set; }
         
         public Avaliacao()
         {

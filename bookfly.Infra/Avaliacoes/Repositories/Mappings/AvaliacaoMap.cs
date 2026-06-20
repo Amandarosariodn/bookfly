@@ -7,15 +7,17 @@ namespace bookfly.Infra.Avaliacoes.Repositories.Mappings
     {
         public AvaliacaoMap()
         {
-            Table("avaliacoes");
+            Table("avaliacao");
 
-            Id(x => x.Id).GeneratedBy.Identity();
+            Id(x => x.Id).Column("id").GeneratedBy.Identity();
 
-            Map(x => x.UsuarioId).Not.Nullable();
-            Map(x => x.LivroId).Not.Nullable();
-            Map(x => x.Nota).Not.Nullable();
-            Map(x => x.Review).Nullable();
-            Map(x => x.ContemSpoiler).Not.Nullable();
+            Map(x => x.UsuarioId).Column("usuario_id").Not.Nullable();
+            Map(x => x.LivroId).Column("livro_id").Not.Nullable();
+            Map(x => x.Nota).Column("nota").Not.Nullable();
+            Map(x => x.Review).Column("review").Nullable();
+            Map(x => x.ContemSpoiler).Column("contem_spoiler").Not.Nullable();
+
+
         }
     }
 }
