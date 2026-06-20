@@ -64,9 +64,10 @@ namespace bookfly.Application.Avaliacoes.Services
             }
         }
 
-        public async Task<IEnumerable<AvaliacaoResponse>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
+        public async Task<IEnumerable<AvaliacaoResponse>> ListarAvaliacoesAsync(ListarAvaliacaoRequest request, CancellationToken cancellationToken)
         {
-             var avaliacoes = await avaliacaoService.ListarAvaliacoesAsync(filtro, cancellationToken);
+            var filtro = request.Adapt<AvaliacaoFiltro>();
+            var avaliacoes = await avaliacaoService.ListarAvaliacoesAsync(filtro, cancellationToken);
             return avaliacoes.Adapt<List<AvaliacaoResponse>>();
         }
 
