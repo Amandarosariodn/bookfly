@@ -9,11 +9,12 @@ namespace bookfly.Domain.Avaliacoes.Services
 {
     public class AvaliacaoService(IAvaliacaoRepository avaliacaoRepository) : IAvaliacaoService
     {
-        public Task InserirAsync(InserirAvaliacaoCommand comando, CancellationToken cancellationToken)
+        public async Task<Avaliacao> InserirAsync(InserirAvaliacaoCommand comando, CancellationToken cancellationToken)
         {
             Avaliacao avaliacao = Instanciar(comando);
 
-            return avaliacaoRepository.InserirAsync(avaliacao, cancellationToken);
+            await avaliacaoRepository.InserirAsync(avaliacao, cancellationToken);
+            return avaliacao;
         }
 
         public async Task<Avaliacao> EditarAsync(EditarAvaliacaoCommand comando, int id, CancellationToken cancellationToken)
@@ -33,9 +34,9 @@ namespace bookfly.Domain.Avaliacoes.Services
             return avaliacao;
         }
 
-        public Task ExcluirAsync(Avaliacao avaliacao, CancellationToken cancellationToken)
+        public async Task ExcluirAsync(Avaliacao avaliacao, CancellationToken cancellationToken)
         {
-            return avaliacaoRepository.ExcluirAsync(avaliacao, cancellationToken);
+            await avaliacaoRepository.ExcluirAsync(avaliacao, cancellationToken);
         }
 
         public async Task<IEnumerable<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
