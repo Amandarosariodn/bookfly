@@ -53,5 +53,10 @@ namespace bookfly.Infra.Avaliacoes.Repositories
                 throw new ArgumentNullException(nameof(filtro));
             throw new NotImplementedException();
         }
+
+        public async Task BuscarNomeLivroAsync(Avaliacao avaliacao, CancellationToken cancellationToken)
+        {
+            
+        }
     }
 }

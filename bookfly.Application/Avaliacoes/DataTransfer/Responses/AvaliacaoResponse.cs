@@ -5,6 +5,8 @@ namespace bookfly.Application.Avaliacoes.DataTransfer.Responses
         public int Id { get; set; }
         public int UsuarioId { get; set; }
         public int LivroId { get; set; }
+        public string? NomeLivro { get; set; }
+
         public int Nota { get; set; }
         public string? Review { get; set; }
         public bool ContemSpoiler { get; set; }

@@ -107,5 +107,27 @@ namespace bookfly.Application.Usuarios.Services
                 Usuario = usuario.Adapt<UsuarioResponse>()
             };
         }
+
+        public async Task<UsuarioResponse> RecuperarUsuarioLogadoAsync(string token, CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrWhiteSpace(token))
+                throw new UnauthorizedAccessException("Token é obrigatório.");
+
+            int usuarioId = jwtService.ValidarToken(token);
+
+            Usuario usuario = await usuariosServices.ValidarAsync(usuarioId, cancellationToken);
+
+            return usuario.Adapt<UsuarioResponse>();
+        }
+
+        public async Task ValidarTokenAsync(string token, CancellationToken cancellationToken)
+        {
+           if (string.IsNullOrWhiteSpace(token))
+                throw new UnauthorizedAccessException("Token é obrigatório.");
+
+            int usuarioId = jwtService.ValidarToken(token);
+
+            await usuariosServices.ValidarAsync(usuarioId, cancellationToken);
+        }
     }
 }

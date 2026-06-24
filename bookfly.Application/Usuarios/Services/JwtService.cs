@@ -5,6 +5,7 @@ using bookfly.Application.Usuarios.Services.Interfaces;
 using bookfly.Domain.Usuarios.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace bookfly.Application.Usuarios.Services
 {
@@ -53,6 +54,54 @@ namespace bookfly.Application.Usuarios.Services
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public int ValidarToken(string token)
+        {
+            string secretKey = configuration["Jwt:SecretKey"];
+
+            if (string.IsNullOrWhiteSpace(secretKey))
+                throw new InvalidOperationException("Jwt:SecretKey não configurada.");
+
+            string issuer = configuration["Jwt:Issuer"];
+
+            if (string.IsNullOrWhiteSpace(issuer))
+                throw new InvalidOperationException("Jwt:Issuer não configurado.");
+
+            string audience = configuration["Jwt:Audience"];
+
+            if (string.IsNullOrWhiteSpace(audience))
+                throw new InvalidOperationException("Jwt:Audience não configurado.");
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(secretKey);
+
+            try
+            {
+                var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidIssuer = issuer,
+                    ValidateAudience = true,
+                    ValidAudience = audience,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                string? usuarioId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                    ?? principal.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+
+                if (string.IsNullOrWhiteSpace(usuarioId) || !int.TryParse(usuarioId, out int id))
+                    throw new UnauthorizedAccessException("Token inválido.");
+
+                return id;
+            }
+            catch (Exception)
+            {
+                throw new UnauthorizedAccessException("Token inválido ou expirado.");
+            }
         }
     }
 }
