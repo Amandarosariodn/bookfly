@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 using Mapster;
 using MapsterMapper;
 using bookfly.Application.Shared.UnitOfWork;
@@ -49,6 +50,9 @@ using bookfly.Domain.Avaliacoes.Repositories;
 using bookfly.Infra.Avaliacoes.Repositories;
 using bookfly.Application.Avaliacoes.Services;
 using bookfly.Application.Avaliacoes.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +62,26 @@ builder.Services.AddControllers();
 
 #region Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Informe o token JWT."
+    });
+
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecuritySchemeReference("Bearer", document),
+            new List<string>()
+        }
+    });
+});
 #endregion
 
 #region CORS
@@ -79,6 +102,42 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
+#endregion
+
+#region Authentication
+string? secretKey = builder.Configuration["Jwt:SecretKey"];
+
+if (string.IsNullOrWhiteSpace(secretKey))
+    throw new InvalidOperationException("Jwt:SecretKey não configurada.");
+
+string? issuer = builder.Configuration["Jwt:Issuer"];
+
+if (string.IsNullOrWhiteSpace(issuer))
+    throw new InvalidOperationException("Jwt:Issuer não configurado.");
+
+string? audience = builder.Configuration["Jwt:Audience"];
+
+if (string.IsNullOrWhiteSpace(audience))
+    throw new InvalidOperationException("Jwt:Audience não configurado.");
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+            ValidateIssuer = true,
+            ValidIssuer = issuer,
+            ValidateAudience = true,
+            ValidAudience = audience,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+builder.Services.AddAuthorization();
 #endregion
 
 #region Mapster
@@ -159,6 +218,8 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseCors("AllowFrontend");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

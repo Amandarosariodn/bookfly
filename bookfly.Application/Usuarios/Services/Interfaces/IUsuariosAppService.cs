@@ -15,5 +15,7 @@ namespace bookfly.Application.Usuarios.Services.Interfaces
         Task<UsuarioResponse> InserirAsync(InserirUsuarioRequest request, CancellationToken cancellationToken);
         Task<List<UsuarioResponse>> ListarAsync(ListarUsuarioRequest request, CancellationToken cancellationToken);
         Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken);
+         Task<UsuarioResponse> RecuperarUsuarioLogadoAsync(string token, CancellationToken cancellationToken);
+         Task ValidarTokenAsync(string token, CancellationToken cancellationToken);
     }
 }

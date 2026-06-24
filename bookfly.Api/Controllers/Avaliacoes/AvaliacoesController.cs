@@ -2,18 +2,21 @@
 using bookfly.Application.Avaliacoes.DataTransfer.Requests;
 using bookfly.Application.Avaliacoes.DataTransfer.Responses;
 using bookfly.Application.Avaliacoes.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bookfly.Api.Controllers.Avaliacoes
 {
     [ApiController]
+    [Authorize]
     [Route("avaliacoes-livros")]
     public class AvaliacoesController(IAvaliacaoAppService avaliacaoAppService) : ControllerBase
     {
-         /// <summary>
-        /// Recuperar todas as categorias
+        /// <summary>
+        /// Recuperar todas as avaliacoes
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -30,9 +33,9 @@ namespace bookfly.Api.Controllers.Avaliacoes
         }
 
         /// <summary>
-        /// Recuperar uma categoria pelo Id
+        /// Recuperar uma avaliacao pelo Id
         /// </summary>
-        /// <param name="id">Id da categoria</param>
+        /// <param name="id">Id da avaliacao</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpGet("{id:int}", Name = "Recuperar-avaliacao")]
@@ -51,10 +54,10 @@ namespace bookfly.Api.Controllers.Avaliacoes
         }
 
         /// <summary>
-        /// Editar uma categoria pelo Id
+        /// Editar uma avaliacao pelo Id
         /// </summary>
-        /// <param name="id">Id da categoria</param>
-        /// <param name="request">Dados para edição da categoria</param>
+        /// <param name="id">Id da avaliacao</param>
+        /// <param name="request">Dados para edição da avaliacao</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPut("{id:int}")]
@@ -67,9 +70,9 @@ namespace bookfly.Api.Controllers.Avaliacoes
         }
 
         /// <summary>
-        /// Excluir uma categoria pelo Id
+        /// Excluir uma avaliacao pelo Id
         /// </summary>
-        /// <param name="id">Id da categoria</param>
+        /// <param name="id">Id da avaliacao</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpDelete("{id:int}")]
@@ -81,19 +84,21 @@ namespace bookfly.Api.Controllers.Avaliacoes
             return NoContent();
         }
 
-        /// <summary>
-        /// Inserir uma nova categoria
-        /// </summary>
-        /// <param name="request">Dados para inserção da categoria</param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         [HttpPost]
-        [ProducesResponseType<AvaliacaoResponse>(StatusCodes.Status201Created)]
-        public async Task<ActionResult<AvaliacaoResponse>> InserirAsync([FromBody] InserirAvaliacaoRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<AvaliacaoResponse>> InserirAsync(
+            [FromBody] InserirAvaliacaoRequest request,
+            CancellationToken cancellationToken)
         {
-            AvaliacaoResponse response = await avaliacaoAppService.InserirAsync(request, cancellationToken);
+            string? authorization = Request.Headers.Authorization;
 
-            return Ok(response);
+            if (string.IsNullOrWhiteSpace(authorization))
+                return Unauthorized();
+
+            string token = authorization.Replace("Bearer ", "");
+
+            AvaliacaoResponse response = await avaliacaoAppService.InserirAsync(request, token, cancellationToken);
+
+            return Created("", response);
         }
     }
 }
