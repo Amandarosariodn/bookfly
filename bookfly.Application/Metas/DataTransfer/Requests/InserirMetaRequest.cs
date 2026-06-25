@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace bookfly.Domain.Metas.Commands
+namespace bookfly.Application.Metas.DataTransfer.Requests
 {
-    public class InserirMetaCommand
+    public class InserirMetaRequest
     {
         public int UsuarioId { get; set; }
         public string Nome { get; set; }

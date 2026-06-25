@@ -1,8 +1,10 @@
 
-namespace bookfly.Domain.Metas.Commands
+
+namespace bookfly.Application.Metas.DataTransfer.Responses
 {
-    public class InserirMetaCommand
+    public class MetaResponse
     {
+        public int Id { get; set; }
         public int UsuarioId { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
