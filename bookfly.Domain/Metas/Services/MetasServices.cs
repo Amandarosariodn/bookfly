@@ -25,9 +25,9 @@ namespace bookfly.Domain.Metas.Services
         {
 
             Meta meta = Instanciar(comando);
-            if (await metasRepository.ExisteMeta(comando.UsuarioId, meta.Id, cancellationToken) == true)
+            if (await metasRepository.ExisteMeta(comando.UsuarioId, cancellationToken) != null)
                 throw new Exception("Meta já cadastrada para este usuário");
-                
+
             await metasRepository.InserirAsync(meta, cancellationToken);
             return meta;
         }

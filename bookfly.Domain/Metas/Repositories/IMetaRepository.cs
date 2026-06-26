@@ -13,6 +13,6 @@ namespace bookfly.Domain.Metas.Repositories
         Task<Meta> ValidarAsync(int metaId, CancellationToken cancellationToken);
         Task<Meta?> RecuperarPorIdAsync(int id, CancellationToken cancellationToken);
 
-        Task<bool?> ExisteMeta(int usuarioId, int idMeta, CancellationToken cancellationToken);
+        Task<Meta?> ExisteMeta(int usuarioId, CancellationToken cancellationToken);
     }
 }

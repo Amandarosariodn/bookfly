@@ -16,14 +16,11 @@ namespace bookfly.Infra.Metas
             await session.UpdateAsync(meta, cancellationToken);
         }
 
-        public async Task<bool?> ExisteMeta(int usuarioId, int idMeta, CancellationToken cancellationToken)
+        public async Task<Meta?> ExisteMeta(int usuarioId, CancellationToken cancellationToken)
         {
-            var query = session.Query<Meta>()
-                .Where(m => m.UsuarioId == usuarioId && m.Id == idMeta)
-                .Select(m => (bool?)true)
+            return await session.Query<Meta>()
+                .Where(m => m.UsuarioId == usuarioId)
                 .FirstOrDefaultAsync(cancellationToken);
-
-                return await query;
         }
 
         public async Task InserirAsync(Meta meta, CancellationToken cancellationToken)
