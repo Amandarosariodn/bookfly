@@ -23,7 +23,11 @@ namespace bookfly.Domain.Metas.Services
 
         public async Task<Meta> InserirMetaAsync(InserirMetaCommand comando, CancellationToken cancellationToken)
         {
+
             Meta meta = Instanciar(comando);
+            if (await metasRepository.ExisteMeta(comando.UsuarioId, meta.Id, cancellationToken) == true)
+                throw new Exception("Meta já cadastrada para este usuário");
+                
             await metasRepository.InserirAsync(meta, cancellationToken);
             return meta;
         }

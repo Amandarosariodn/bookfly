@@ -12,5 +12,7 @@ namespace bookfly.Domain.Metas.Repositories
         Task EditarAsync(Meta meta, CancellationToken cancellationToken);
         Task<Meta> ValidarAsync(int metaId, CancellationToken cancellationToken);
         Task<Meta?> RecuperarPorIdAsync(int id, CancellationToken cancellationToken);
+
+        Task<bool?> ExisteMeta(int usuarioId, int idMeta, CancellationToken cancellationToken);
     }
 }
