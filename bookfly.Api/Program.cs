@@ -53,6 +53,12 @@ using bookfly.Application.Avaliacoes.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
+using bookfly.Application.Metas.Services.Interfaces;
+using bookfly.Application.Metas.Services;
+using bookfly.Domain.Metas.Repositories;
+using bookfly.Infra.Metas;
+using bookfly.Domain.Metas.Services.Interfaces;
+using bookfly.Domain.Metas.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -178,6 +184,7 @@ builder.Services.AddScoped<ISeguidorUsuariosService, SeguidorUsuariosService>();
 builder.Services.AddScoped<IEstanteLivrosServices, EstanteLivrosServices>();
 builder.Services.AddScoped<IEstantesService, EstanteService>();
 builder.Services.AddScoped<IAvaliacaoService, AvaliacaoService>();
+builder.Services.AddScoped<IMetasServices, MetasServices>();
 #endregion
 
 #region External Services
@@ -192,6 +199,7 @@ builder.Services.AddScoped<ISeguidorUsuarioRepository, SeguidorUsuarioRepository
 builder.Services.AddScoped<IEstanteRepository, EstanteRepository>();
 builder.Services.AddScoped<IEstanteLivrosRepository, EstanteLivroRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+builder.Services.AddScoped<IMetaRepository, MetaRepository>();
 #endregion
 
 #region Application Services
@@ -204,6 +212,7 @@ builder.Services.AddScoped<IEstantesAppService, EstantesAppService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<ISenhaService, SenhaService>();
 builder.Services.AddScoped<IAvaliacaoAppService, AvaliacaoAppService>();
+builder.Services.AddScoped<IMetasAppService, MetaAppService>();
 #endregion
 
 var app = builder.Build();
