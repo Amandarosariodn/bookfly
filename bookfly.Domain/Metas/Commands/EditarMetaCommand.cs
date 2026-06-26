@@ -9,6 +9,5 @@ namespace bookfly.Domain.Metas.Commands
         public int QuantidadeMeta { get; set; }
         public int QuantidadeAtual { get; set; }
         public int Ano { get; set; }
-        public int Mes { get; set; }
     }
 }

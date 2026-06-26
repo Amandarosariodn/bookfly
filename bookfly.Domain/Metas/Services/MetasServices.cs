@@ -16,7 +16,6 @@ namespace bookfly.Domain.Metas.Services
             meta.SetQuantidadeMeta(comando.QuantidadeMeta);
             meta.SetQuantidadeAtual(comando.QuantidadeAtual);
             meta.SetAno(comando.Ano);
-            meta.SetMes(comando.Mes);
 
             await metasRepository.EditarAsync(meta, cancellationToken);
             return meta;
@@ -37,9 +36,7 @@ namespace bookfly.Domain.Metas.Services
                 descricao: comando.Descricao,
                 quantidadeMeta: comando.QuantidadeMeta,
                 quantidadeAtual: comando.QuantidadeAtual,
-                ano: comando.Ano,
-                mes: comando.Mes
-            );
+                ano: comando.Ano            );
         }
 
 

@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace bookfly.Application.Metas.DataTransfer.Requests
 {
     public class InserirMetaRequest
@@ -13,6 +8,5 @@ namespace bookfly.Application.Metas.DataTransfer.Requests
         public int QuantidadeMeta { get; set; }
         public int QuantidadeAtual { get; set; }
         public int Ano { get; set; }
-        public int Mes { get; set; }
     }
 }

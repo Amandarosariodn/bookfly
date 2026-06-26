@@ -15,6 +15,11 @@ namespace bookfly.Api.Controllers.Metas
     {
         private readonly IMetasAppService metasAppService;
 
+        public MetasController(IMetasAppService metasAppService)
+        {
+            this.metasAppService = metasAppService ?? throw new ArgumentNullException(nameof(metasAppService));
+        }
+
         /// <summary>
         /// Recuperar uma meta pelo Id
         /// </summary>

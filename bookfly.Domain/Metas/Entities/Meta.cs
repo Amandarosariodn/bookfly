@@ -11,14 +11,13 @@ namespace bookfly.Domain.Metas.Entities
         public virtual int QuantidadeMeta { get; protected set; }
         public virtual int QuantidadeAtual { get; protected set; }
         public virtual int Ano { get; protected set; }
-        public virtual int Mes { get; protected set; }
 
         protected Meta()
         {
             
         }
 
-        public Meta(int usuarioId,string nome, string descricao, int quantidadeMeta, int quantidadeAtual, int ano, int mes)
+        public Meta(int usuarioId,string nome, string descricao, int quantidadeMeta, int quantidadeAtual, int ano)
         {
             SetUsuarioId(usuarioId);
             SetNome(nome);
@@ -26,7 +25,6 @@ namespace bookfly.Domain.Metas.Entities
             SetQuantidadeMeta(quantidadeMeta);
             SetQuantidadeAtual(quantidadeAtual);
             SetAno(ano);
-            SetMes(mes);
         }
 
         public virtual void SetUsuarioId(int usuarioId)
@@ -75,14 +73,6 @@ namespace bookfly.Domain.Metas.Entities
                 throw new ArgumentException("O ano não pode ser negativo.", nameof(ano));
             
             Ano = ano;
-        }
-
-        public virtual void SetMes(int mes)
-        {
-            if(mes < 1 || mes > 12)
-                throw new ArgumentException("O mês deve estar entre 1 e 12.", nameof(mes));
-            
-            Mes = mes;
         }
 
 

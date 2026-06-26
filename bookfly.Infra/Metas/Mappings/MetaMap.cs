@@ -20,7 +20,6 @@ namespace bookfly.Infra.Metas.Mappings
             Map(meta => meta.QuantidadeMeta).Column("quantidade_meta").Nullable();
             Map(meta => meta.QuantidadeAtual).Column("quantidade_atual").Nullable();
             Map(meta => meta.Ano).Column("ano").Nullable();
-            Map(meta => meta.Mes).Column("mes").Nullable();
         }
     }
 }
