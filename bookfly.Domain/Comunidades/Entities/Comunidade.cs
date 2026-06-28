@@ -1,5 +1,7 @@
 
 
+using bookfly.Domain.Comunidades.Enums;
+
 namespace bookfly.Domain.Comunidades.Entities
 {
     public class Comunidade
@@ -8,6 +10,7 @@ namespace bookfly.Domain.Comunidades.Entities
         public virtual int CriadorId { get; protected set; }
         public virtual string Nome { get; protected set; }
         public virtual string Descricao { get; protected set; }
+        public virtual GeneroComunidadeEnum Genero {get;protected set;}
         public virtual string UrlImagem { get; protected set; }
         public virtual bool Privado { get; protected set; }
         public virtual bool Ativo { get; protected set; }
@@ -15,11 +18,12 @@ namespace bookfly.Domain.Comunidades.Entities
         
         protected Comunidade() { }
 
-        public Comunidade(int criadorId, string nome, string descricao, string urlImagem, bool privado)
+        public Comunidade(int criadorId, string nome, string descricao,GeneroComunidadeEnum genero, string urlImagem, bool privado)
         {
             SetCriadorId(criadorId);
             SetNome(nome);
             SetDescricao(descricao);
+            SetGenero(genero);
             SetUrlImagem(urlImagem);
             SetPrivado(privado);
 
@@ -54,6 +58,14 @@ namespace bookfly.Domain.Comunidades.Entities
                 throw new ArgumentException("A descrição não pode ser nula ou vazia.", nameof(descricao));
             }
             Descricao = descricao;
+        }
+
+        public virtual void SetGenero(GeneroComunidadeEnum genero)
+        {
+             if (!Enum.IsDefined(typeof(GeneroComunidadeEnum), genero))
+                throw new Exception("Gênero inválido");
+
+            Genero = genero;
         }
 
         public virtual void SetUrlImagem(string urlImagem)
