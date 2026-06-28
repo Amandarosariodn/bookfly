@@ -21,7 +21,7 @@ namespace bookfly.Infra.Posts.Mappings
             Map(post => post.Conteudo).Column("conteudo").Nullable();
             Map(post => post.PaginaReferencia).Column("pagina_referencia").Nullable();
             Map(post => post.Fixado).Column("fixado").Nullable();
-            Map(post => post.CriadoEm).Column("criado_em").Nullable();
+            Map(post => post.CriadoEm).Column("criado_em").CustomType<DateTime>().Nullable();
         }
     }
 }

@@ -10,10 +10,10 @@ namespace bookfly.Api.Controllers.Comunidades
     [Route("api/[controller]")]
     public class ComunidadesController(IComunidadeAppService comunidadeAppService): ControllerBase
     {
-         [HttpGet]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult<List<ComunidadeResponse>>> ListarAsync(
+        public async Task<ActionResult<List<ComunidadeResponseDto>>> ListarAsync(
             [FromQuery] ComunidadeListarRequest request,
             CancellationToken cancellationToken)
         {
@@ -26,11 +26,11 @@ namespace bookfly.Api.Controllers.Comunidades
         }
 
         [HttpGet("{id:int}")]
-        [ProducesResponseType<ComunidadeResponse>(StatusCodes.Status200OK)]
+        [ProducesResponseType<ComunidadeResponseDto>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ComunidadeResponse>> RecuperarAsync(int id, CancellationToken cancellationToken)
+        public async Task<ActionResult<ComunidadeResponseDto>> RecuperarAsync(int id, CancellationToken cancellationToken)
         {
-            ComunidadeResponse response = await comunidadeAppService.RecuperarAsync(id, cancellationToken);
+            ComunidadeResponseDto response = await comunidadeAppService.RecuperarAsync(id, cancellationToken);
 
             if (response == null)
                 return NotFound();
@@ -39,19 +39,19 @@ namespace bookfly.Api.Controllers.Comunidades
         }
 
         [HttpPost]
-        [ProducesResponseType<ComunidadeResponse>(StatusCodes.Status201Created)]
-        public async Task<ActionResult<ComunidadeResponse>> InserirAsync([FromBody] ComunidadeInserirRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType<ComunidadeResponseDto>(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ComunidadeResponseDto>> InserirAsync([FromBody] ComunidadeInserirRequest request, CancellationToken cancellationToken)
         {
-            ComunidadeResponse response = await comunidadeAppService.InserirAsync(request, cancellationToken);
+            ComunidadeResponseDto response = await comunidadeAppService.InserirAsync(request, cancellationToken);
 
             return Ok(response);
         }
 
         [HttpPut("{id:int}")]
-        [ProducesResponseType<ComunidadeResponse>(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ComunidadeResponse>> EditarAsync(int id, [FromBody] ComunidadeEditarRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType<ComunidadeResponseDto>(StatusCodes.Status200OK)]
+        public async Task<ActionResult<ComunidadeResponseDto>> EditarAsync(int id, [FromBody] ComunidadeEditarRequest request, CancellationToken cancellationToken)
         {
-            ComunidadeResponse response = await comunidadeAppService.EditarAsync(id, request, cancellationToken);
+            ComunidadeResponseDto response = await comunidadeAppService.EditarAsync(id, request, cancellationToken);
 
             return Ok(response);
         }

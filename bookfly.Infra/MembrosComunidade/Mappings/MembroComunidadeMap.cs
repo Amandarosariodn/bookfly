@@ -13,7 +13,7 @@ namespace bookfly.Infra.MembrosComunidade.Mappings
             Map(membro => membro.ComunidadeId).Column("comunidade_id").Nullable();
             Map(membro => membro.CargoId).Column("cargo_id").Nullable();
             Map(membro => membro.Banido).Column("banido").Nullable();
-            Map(membro => membro.EntrouEm).Column("entrou_em").Nullable();
+            Map(membro => membro.EntrouEm).Column("entrou_em").CustomType<DateTime>().Nullable();
         }
     }
 }

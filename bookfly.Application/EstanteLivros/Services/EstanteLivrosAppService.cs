@@ -21,7 +21,7 @@ namespace bookfly.Application.EstanteLivros.Services
         IEstanteRepository estanteRepository,
         ILivrosRepository livrosRepository) : IEstanteLivrosAppServices
     {
-        public async Task<EstanteLivroResponse> EditarEstanteLivroAsync(EditarEstanteLivroRequest request, int id, CancellationToken cancellationToken)
+        public async Task<EstanteLivroResponseDto> EditarEstanteLivroAsync(EditarEstanteLivroRequest request, int id, CancellationToken cancellationToken)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace bookfly.Application.EstanteLivros.Services
                 estanteLivro = await estanteLivrosServices.EditarEstanteLivroAsync(command, id, cancellationToken);
                 await wow.CommitAsync(cancellationToken);
 
-                return estanteLivro.Adapt<EstanteLivroResponse>();
+                return estanteLivro.Adapt<EstanteLivroResponseDto>();
             }
             catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace bookfly.Application.EstanteLivros.Services
             }
         }
 
-        public async Task<EstanteLivroResponse> InserirEstanteLivroAsync(InserirEstanteLivroRequest request, CancellationToken cancellationToken)
+        public async Task<EstanteLivroResponseDto> InserirEstanteLivroAsync(InserirEstanteLivroRequest request, CancellationToken cancellationToken)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace bookfly.Application.EstanteLivros.Services
                 EstanteLivro estanteLivro = await estanteLivrosServices.InserirEstanteLivroAsync(command, cancellationToken);
                 await wow.CommitAsync(cancellationToken);
 
-                return estanteLivro.Adapt<EstanteLivroResponse>();
+                return estanteLivro.Adapt<EstanteLivroResponseDto>();
             }
             catch (Exception)
             {
@@ -61,7 +61,7 @@ namespace bookfly.Application.EstanteLivros.Services
 
 
 
-        public async Task<List<EstanteLivroResponse>> ListarAsync(ListarEstanteLivroRequest request, CancellationToken cancellationToken)
+        public async Task<List<EstanteLivroResponseDto>> ListarAsync(ListarEstanteLivroRequest request, CancellationToken cancellationToken)
         {
             var filtro = new EstanteLivroFiltro
             {
@@ -72,19 +72,19 @@ namespace bookfly.Application.EstanteLivros.Services
             };
 
             var estanteLivros = await estanteLivrosServices.ListarAsync(filtro, cancellationToken);
-            return estanteLivros.Adapt<List<EstanteLivroResponse>>();
+            return estanteLivros.Adapt<List<EstanteLivroResponseDto>>();
         }
 
-        public async Task<EstanteLivroResponse> RecuperarAsync(int id, CancellationToken cancellationToken)
+        public async Task<EstanteLivroResponseDto> RecuperarAsync(int id, CancellationToken cancellationToken)
         {
             EstanteLivro? estanteLivro = await estanteLivrosServices.ValidarAsync(id, cancellationToken);
-            return estanteLivro.Adapt<EstanteLivroResponse>();
+            return estanteLivro.Adapt<EstanteLivroResponseDto>();
         }
 
-        public async Task<EstanteLivroResponse?> ValidarAsync(int livroId, CancellationToken cancellationToken)
+        public async Task<EstanteLivroResponseDto?> ValidarAsync(int livroId, CancellationToken cancellationToken)
         {
             EstanteLivro? estanteLivro = await estanteLivrosServices.ValidarAsync(livroId, cancellationToken);
-            return estanteLivro.Adapt<EstanteLivroResponse>();
+            return estanteLivro.Adapt<EstanteLivroResponseDto>();
         }
 
         private async Task<InserirEstanteLivroCommand> CriarComandoInserirAsync(InserirEstanteLivroRequest request, CancellationToken cancellationToken)

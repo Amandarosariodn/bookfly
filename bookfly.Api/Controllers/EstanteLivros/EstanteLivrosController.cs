@@ -12,7 +12,7 @@ namespace bookfly.Api.Controllers.EstanteLivros
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult<List<EstanteLivroResponse>>> ListarAsync(
+        public async Task<ActionResult<List<EstanteLivroResponseDto>>> ListarAsync(
             [FromQuery] ListarEstanteLivroRequest request,
             CancellationToken cancellationToken)
         {
@@ -25,11 +25,11 @@ namespace bookfly.Api.Controllers.EstanteLivros
         }
 
         [HttpGet("{id:int}")]
-        [ProducesResponseType<EstanteLivroResponse>(StatusCodes.Status200OK)]
+        [ProducesResponseType<EstanteLivroResponseDto>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<EstanteLivroResponse>> RecuperarAsync(int id, CancellationToken cancellationToken)
+        public async Task<ActionResult<EstanteLivroResponseDto>> RecuperarAsync(int id, CancellationToken cancellationToken)
         {
-            EstanteLivroResponse response = await estanteLivrosAppServices.RecuperarAsync(id, cancellationToken);
+            EstanteLivroResponseDto response = await estanteLivrosAppServices.RecuperarAsync(id, cancellationToken);
 
             if (response == null)
                 return NotFound();
@@ -38,19 +38,19 @@ namespace bookfly.Api.Controllers.EstanteLivros
         }
 
         [HttpPost]
-        [ProducesResponseType<EstanteLivroResponse>(StatusCodes.Status201Created)]
-        public async Task<ActionResult<EstanteLivroResponse>> InserirAsync([FromBody] InserirEstanteLivroRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType<EstanteLivroResponseDto>(StatusCodes.Status201Created)]
+        public async Task<ActionResult<EstanteLivroResponseDto>> InserirAsync([FromBody] InserirEstanteLivroRequest request, CancellationToken cancellationToken)
         {
-            EstanteLivroResponse response = await estanteLivrosAppServices.InserirEstanteLivroAsync(request, cancellationToken);
+            EstanteLivroResponseDto response = await estanteLivrosAppServices.InserirEstanteLivroAsync(request, cancellationToken);
 
             return Ok(response);
         }
 
         [HttpPut("{id:int}")]
-        [ProducesResponseType<EstanteLivroResponse>(StatusCodes.Status200OK)]
-        public async Task<ActionResult<EstanteLivroResponse>> EditarAsync(int id, [FromBody] EditarEstanteLivroRequest request, CancellationToken cancellationToken)
+        [ProducesResponseType<EstanteLivroResponseDto>(StatusCodes.Status200OK)]
+        public async Task<ActionResult<EstanteLivroResponseDto>> EditarAsync(int id, [FromBody] EditarEstanteLivroRequest request, CancellationToken cancellationToken)
         {
-            EstanteLivroResponse response = await estanteLivrosAppServices.EditarEstanteLivroAsync(request, id, cancellationToken);
+            EstanteLivroResponseDto response = await estanteLivrosAppServices.EditarEstanteLivroAsync(request, id, cancellationToken);
 
             return Ok(response);
         }

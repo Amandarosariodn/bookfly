@@ -18,9 +18,9 @@ namespace bookfly.Infra.EstanteLivros.Mappings
             Map(estanteLivro => estanteLivro.StatusLeitura).Column("status_leitura").CustomType<StatusLeituraEnum>().Nullable();
             Map(estanteLivro => estanteLivro.PaginaAtual).Column("pagina_atual").Nullable();
             Map(estanteLivro => estanteLivro.Favorito).Column("favorito").CustomType<bool>().Nullable();
-            Map(estanteLivro => estanteLivro.IniciadoEm).Column("iniciado_em").Nullable();
-            Map(estanteLivro => estanteLivro.FinalizadoEm).Column("finalizado_em").Nullable();
-            Map(estanteLivro => estanteLivro.CriadoEm).Column("criado_em").Nullable();
+            Map(estanteLivro => estanteLivro.IniciadoEm).Column("iniciado_em").CustomType<DateTime>().Nullable();
+            Map(estanteLivro => estanteLivro.FinalizadoEm).Column("finalizado_em").CustomType<DateTime>().Nullable();
+            Map(estanteLivro => estanteLivro.CriadoEm).Column("criado_em").CustomType<DateTime>().Nullable();
 
         }
     }

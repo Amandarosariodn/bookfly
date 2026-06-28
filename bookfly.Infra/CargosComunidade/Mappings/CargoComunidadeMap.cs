@@ -17,7 +17,7 @@ namespace bookfly.Infra.CargosComunidade.Mappings
             Map(comunidade => comunidade.PodeDeletar).Column("pode_deletar_post").Nullable();
             Map(comunidade => comunidade.PodeBanir).Column("pode_banir_membro").Nullable();
             Map(comunidade => comunidade.PodeFixarPost).Column("pode_fixar_post").Nullable();
-            Map(comunidade => comunidade.CriadoEm).Column("criado_em").Nullable();
+            Map(comunidade => comunidade.CriadoEm).Column("criado_em").CustomType<DateTime>().Nullable();
         }
     }
 }

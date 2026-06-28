@@ -14,7 +14,7 @@
                 Map(Estante => Estante.Nome).Column("nome");
                 Map(Estante => Estante.Descricao).Column("descricao").Nullable();
                 Map(Estante => Estante.Privada).Column("privada").CustomType<bool>().Nullable();
-                Map(Estante => Estante.CriadoEm).Column("criado_em").Nullable();
+                Map(Estante => Estante.CriadoEm).Column("criado_em").CustomType<DateTime>().Nullable();
 
             }
         }

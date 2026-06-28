@@ -14,7 +14,7 @@ namespace bookfly.Application.Comunidades.Services
 {
     public class ComunidadeAppService(IComunidadeService comunidadeService, IComunidadeRepository comunidadeRepository, IUnitOfWork unitOfWork) : IComunidadeAppService
     {
-        public async Task<ComunidadeResponse> EditarAsync(int id, ComunidadeEditarRequest request, CancellationToken cancellationToken)
+        public async Task<ComunidadeResponseDto> EditarAsync(int id, ComunidadeEditarRequest request, CancellationToken cancellationToken)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace bookfly.Application.Comunidades.Services
                 await unitOfWork.BeginAsync(cancellationToken);
                 await comunidadeService.EditarComunidadeAsync(command, id, cancellationToken);
                 await unitOfWork.CommitAsync(cancellationToken);
-                return comunidade.Adapt<ComunidadeResponse>();
+                return comunidade.Adapt<ComunidadeResponseDto>();
             }
             catch (Exception)
             {
@@ -32,7 +32,7 @@ namespace bookfly.Application.Comunidades.Services
             }
         }
 
-        public async Task<ComunidadeResponse> InserirAsync(ComunidadeInserirRequest request, CancellationToken cancellationToken)
+        public async Task<ComunidadeResponseDto> InserirAsync(ComunidadeInserirRequest request, CancellationToken cancellationToken)
         {
             var command = request.Adapt<ComunidadeInserirCommand>();
 
@@ -41,7 +41,7 @@ namespace bookfly.Application.Comunidades.Services
             {
                 Comunidade comunidade = await comunidadeService.InserirComunidadeAsync(command, cancellationToken);
                 await unitOfWork.CommitAsync(cancellationToken);
-                return comunidade.Adapt<ComunidadeResponse>();
+                return comunidade.Adapt<ComunidadeResponseDto>();
             }
             catch (Exception)
             {
@@ -50,10 +50,10 @@ namespace bookfly.Application.Comunidades.Services
             }
         }
 
-        public async Task<List<ComunidadeResponse>> ListarAsync(ComunidadeListarRequest request, CancellationToken cancellationToken)
+        public async Task<List<ComunidadeResponseDto>> ListarAsync(ComunidadeListarRequest request, CancellationToken cancellationToken)
         {
             var estantes = await comunidadeService.ListarAsync(new ComunidadeFiltro { Nome = request.Nome }, cancellationToken);
-            return estantes.Adapt<List<ComunidadeResponse>>();
+            return estantes.Adapt<List<ComunidadeResponseDto>>();
         }
 
         public async Task MudarSituacaoAsync(int id, CancellationToken cancellationToken)
@@ -71,14 +71,14 @@ namespace bookfly.Application.Comunidades.Services
             }
         }
 
-        public async Task<ComunidadeResponse> RecuperarAsync(int id, CancellationToken cancellationToken)
+        public async Task<ComunidadeResponseDto> RecuperarAsync(int id, CancellationToken cancellationToken)
         {
             try
             {
                 await unitOfWork.BeginAsync(cancellationToken);
                 var estante = await comunidadeService.ValidarAsync(id, cancellationToken);
                 await unitOfWork.CommitAsync(cancellationToken);
-                return estante.Adapt<ComunidadeResponse>();
+                return estante.Adapt<ComunidadeResponseDto>();
             }
             catch (Exception)
             {
