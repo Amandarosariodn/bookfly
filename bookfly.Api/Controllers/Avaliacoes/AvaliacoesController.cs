@@ -26,9 +26,6 @@ namespace bookfly.Api.Controllers.Avaliacoes
         {
             var response = await avaliacaoAppService.ListarAvaliacoesAsync(request, cancellationToken);
 
-            if (response == null || !response.Any())
-                return NoContent();
-
             return Ok(response);
         }
 

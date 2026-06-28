@@ -7,7 +7,7 @@ namespace bookfly.Domain.Avaliacoes.Repositories
     public interface IAvaliacaoRepository
     {
         Task<Avaliacao?> ObterPorIdAsync(int id, CancellationToken cancellationToken);
-        Task<IEnumerable<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken);
+        Task<List<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken);
         Task InserirAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
         Task EditarAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
         Task ExcluirAsync(Avaliacao avaliacao, CancellationToken cancellationToken);

@@ -16,7 +16,7 @@ namespace bookfly.Infra.SeguidorUsuarios.Mappings
             CompositeId()
             .KeyProperty(s => s.SeguidorID, "seguidor_id")
             .KeyProperty(s => s.SeguidoID, "seguido_id");
-             Map(s => s.CriadoEm).Column("criado_em");
+             Map(s => s.CriadoEm).Column("criado_em").CustomType<DateTime>();
 
         }
 

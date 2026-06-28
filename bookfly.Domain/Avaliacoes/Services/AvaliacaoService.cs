@@ -39,13 +39,9 @@ namespace bookfly.Domain.Avaliacoes.Services
             await avaliacaoRepository.ExcluirAsync(avaliacao, cancellationToken);
         }
 
-        public async Task<IEnumerable<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
+        public async Task<List<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
         {
-            var avaliacoes = await avaliacaoRepository.ListarAvaliacoesAsync(filtro, cancellationToken);
-
-            if (avaliacoes == null || !avaliacoes.Any())
-                return new List<Avaliacao>();
-
+              List<Avaliacao> avaliacoes = await avaliacaoRepository.ListarAvaliacoesAsync(filtro, cancellationToken);
             return avaliacoes ?? new List<Avaliacao>();
         }
 

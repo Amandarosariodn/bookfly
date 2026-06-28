@@ -91,7 +91,8 @@ namespace bookfly.Application.Avaliacoes.Services
         public async Task<AvaliacaoResponse> ObterPorIdAsync(int id, CancellationToken cancellationToken)
         {
             var avaliacao = await avaliacaoService.ObterPorIdAsync(id, cancellationToken);
-            return avaliacao.Adapt<AvaliacaoResponse>();
-        }
+            return avaliacao.Adapt<AvaliacaoResponse>(); }
+
+  
     }
 }

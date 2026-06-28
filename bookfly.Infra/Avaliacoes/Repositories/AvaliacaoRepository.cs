@@ -2,7 +2,6 @@
 using bookfly.Domain.Avaliacoes.Entities;
 using bookfly.Domain.Avaliacoes.Repositories;
 using bookfly.Domain.Avaliacoes.Repositories.Filters;
-using bookfly.Domain.Livros.Entities;
 using NHibernate;
 using NHibernate.Linq;
 
@@ -35,7 +34,7 @@ namespace bookfly.Infra.Avaliacoes.Repositories
             await _session.SaveAsync(avaliacao, cancellationToken);
         }
 
-        public async Task<IEnumerable<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
+        public async Task<List<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
         {
             var query = session.Query<Avaliacao>();
 
@@ -50,9 +49,7 @@ namespace bookfly.Infra.Avaliacoes.Repositories
 
         public async Task<Avaliacao?> ObterPorIdAsync(int id, CancellationToken cancellationToken)
         {
-            if (id <= 0)
-                throw new ArgumentOutOfRangeException(nameof(id));
-            throw new NotImplementedException();
+            return await session.GetAsync<Avaliacao>(id, cancellationToken);
         }
     }
 }

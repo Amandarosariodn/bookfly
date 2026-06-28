@@ -262,5 +262,4 @@ app.UseAuthorization();
 app.MapControllers().RequireCors("AllowFrontend");
 
 #endregion
-
 app.Run();

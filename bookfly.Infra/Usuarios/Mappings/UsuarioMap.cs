@@ -17,7 +17,7 @@ namespace bookfly.Infra.Usuarios.Mappings
             Map(usuario => usuario.UrlImagem).Column("url_imagem").Nullable();
             Map(usuario => usuario.ReceberSpoilers).Column("receber_spoilers").Nullable();
             Map(usuario => usuario.Situacao).Column("ativo_inativo").CustomType<bool>().Nullable();
-            Map(usuario => usuario.CriadoEm).Column("criado_em");
+            Map(usuario => usuario.CriadoEm).Column("criado_em").CustomType<DateTime>();
         }
         
     }
