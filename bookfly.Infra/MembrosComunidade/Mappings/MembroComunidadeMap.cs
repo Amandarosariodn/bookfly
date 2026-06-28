@@ -11,6 +11,7 @@ namespace bookfly.Infra.MembrosComunidade.Mappings
 
             Id(membro => membro.Id).Column("id").GeneratedBy.Identity();
             Map(membro => membro.ComunidadeId).Column("comunidade_id").Nullable();
+            Map(membro => membro.UsuarioId).Column("usuario_id").Nullable();
             Map(membro => membro.CargoId).Column("cargo_id").Nullable();
             Map(membro => membro.Banido).Column("banido").Nullable();
             Map(membro => membro.EntrouEm).Column("entrou_em").CustomType<DateTime>().Nullable();
