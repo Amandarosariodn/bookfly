@@ -11,6 +11,5 @@ namespace bookfly.Domain.Avaliacoes.Repositories
         Task InserirAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
         Task EditarAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
         Task ExcluirAsync(Avaliacao avaliacao, CancellationToken cancellationToken);
-        Task FiltrarAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken);
     }
 }

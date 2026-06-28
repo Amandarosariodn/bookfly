@@ -2,7 +2,9 @@
 using bookfly.Domain.Avaliacoes.Entities;
 using bookfly.Domain.Avaliacoes.Repositories;
 using bookfly.Domain.Avaliacoes.Repositories.Filters;
+using bookfly.Domain.Livros.Entities;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace bookfly.Infra.Avaliacoes.Repositories
 {
@@ -26,7 +28,7 @@ namespace bookfly.Infra.Avaliacoes.Repositories
             await _session.DeleteAsync(avaliacao, cancellationToken);
         }
 
-        public async   Task InserirAsync(Avaliacao avaliacao, CancellationToken cancellationToken)
+        public async Task InserirAsync(Avaliacao avaliacao, CancellationToken cancellationToken)
         {
             if (avaliacao == null)
                 throw new ArgumentNullException(nameof(avaliacao));
@@ -35,9 +37,15 @@ namespace bookfly.Infra.Avaliacoes.Repositories
 
         public async Task<IEnumerable<Avaliacao>> ListarAvaliacoesAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
         {
-            if (filtro == null)
-                throw new ArgumentNullException(nameof(filtro));
-            throw new NotImplementedException();
+            var query = session.Query<Avaliacao>();
+
+            if (filtro.UsuarioId.HasValue)
+                query = query.Where(c => c.UsuarioId == filtro.UsuarioId.Value);
+
+            if (filtro.LivroId.HasValue)
+                query = query.Where(c => c.LivroId == filtro.LivroId.Value);
+
+            return await query.ToListAsync(cancellationToken);
         }
 
         public async Task<Avaliacao?> ObterPorIdAsync(int id, CancellationToken cancellationToken)
@@ -45,18 +53,6 @@ namespace bookfly.Infra.Avaliacoes.Repositories
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id));
             throw new NotImplementedException();
-        }
-
-        public async Task FiltrarAsync(AvaliacaoFiltro filtro, CancellationToken cancellationToken)
-        {
-            if (filtro == null)
-                throw new ArgumentNullException(nameof(filtro));
-            throw new NotImplementedException();
-        }
-
-        public async Task BuscarNomeLivroAsync(Avaliacao avaliacao, CancellationToken cancellationToken)
-        {
-            
         }
     }
 }
