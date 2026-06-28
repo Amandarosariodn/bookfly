@@ -27,7 +27,7 @@ namespace bookfly.Api.Controllers.Posts
             return Ok(response);
         }
 
-        [HttpGet("{id:long}")]
+        [HttpGet("{id:long}", Name = "GetPostById")]
         [ProducesResponseType<PostResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<PostResponse>> RecuperarAsync(long id, CancellationToken cancellationToken)
@@ -43,7 +43,7 @@ namespace bookfly.Api.Controllers.Posts
         public async Task<ActionResult<PostResponse>> InserirAsync([FromBody] InserirPostRequest request, CancellationToken cancellationToken)
         {
             PostResponse response = await postAppService.InserirAsync(request, cancellationToken);
-            return CreatedAtAction(nameof(RecuperarAsync), new { id = response.Id }, response);
+            return CreatedAtRoute("GetPostById", new { id = response.Id }, response);
         }
 
         [HttpPut("{id:long}")]
