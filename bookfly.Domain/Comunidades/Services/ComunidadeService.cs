@@ -18,6 +18,7 @@ namespace bookfly.Domain.Comunidades.Services
 
             comunidade.SetNome(comando.Nome);
             comunidade.SetDescricao(comando.Descricao);
+            comunidade.SetGenero(comando.Genero);
             comunidade.SetUrlImagem(comando.UrlImagem);
             comunidade.SetAtivo(comando.Ativo);
             comunidade.SetPrivado(comando.Privado);
@@ -39,6 +40,7 @@ namespace bookfly.Domain.Comunidades.Services
                 criadorId: comando.CriadorId,
                 nome: comando.Nome,
                 descricao: comando.Descricao,
+                genero:comando.Genero,
                 urlImagem: comando.UrlImagem,
                 privado: comando.Privado
             );
