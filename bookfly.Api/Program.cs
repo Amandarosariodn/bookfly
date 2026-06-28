@@ -65,6 +65,12 @@ using bookfly.Domain.Comunidades.Repositories.Interfaces;
 using bookfly.Infra.Comunidades;
 using bookfly.Application.Comunidades.Services.Interfaces;
 using bookfly.Application.Comunidades.Services;
+using bookfly.Domain.CargosComunidade.Repositories.Interfaces;
+using bookfly.Infra.CargosComunidade.Repositories;
+using bookfly.Domain.CargosComunidade.Services.Interfaces;
+using bookfly.Domain.CargosComunidade.Services;
+using bookfly.Application.CargosComunidade.Services.Interfaces;
+using bookfly.Application.CargosComunidade.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -192,6 +198,7 @@ builder.Services.AddScoped<IEstantesService, EstanteService>();
 builder.Services.AddScoped<IAvaliacaoService, AvaliacaoService>();
 builder.Services.AddScoped<IMetasServices, MetasServices>();
 builder.Services.AddScoped<IComunidadeService, ComunidadeService>();
+builder.Services.AddScoped<ICargoComunidadeService, CargoComunidadeService>();
 #endregion
 
 #region External Services
@@ -208,6 +215,7 @@ builder.Services.AddScoped<IEstanteLivrosRepository, EstanteLivroRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 builder.Services.AddScoped<IMetaRepository, MetaRepository>();
 builder.Services.AddScoped<IComunidadeRepository, ComunidadeRepository>();
+builder.Services.AddScoped<ICargoComunidadeRepository, CargoComunidadeRepository>();
 #endregion
 
 #region Application Services
@@ -222,6 +230,7 @@ builder.Services.AddScoped<ISenhaService, SenhaService>();
 builder.Services.AddScoped<IAvaliacaoAppService, AvaliacaoAppService>();
 builder.Services.AddScoped<IMetasAppService, MetaAppService>();
 builder.Services.AddScoped<IComunidadeAppService, ComunidadeAppService>();
+builder.Services.AddScoped<ICargoComunidadeAppService, CargoComunidadeAppService>();
 #endregion
 
 var app = builder.Build();
