@@ -40,7 +40,7 @@ namespace bookfly.Infra.Comunidades
 
         public async Task<Comunidade?> RecuperarPorIdAsync(int comunidadeId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await session.GetAsync<Comunidade>(comunidadeId, cancellationToken);
         }
     }
 }
