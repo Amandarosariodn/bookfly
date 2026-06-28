@@ -41,8 +41,8 @@ namespace bookfly.Infra.Avaliacoes.Repositories
             // if (filtro.UsuarioId.HasValue)
             //     query = query.Where(c => c.UsuarioId == filtro.UsuarioId.Value);
 
-            // if (filtro.LivroId.HasValue)
-            //     query = query.Where(c => c.LivroId == filtro.LivroId.Value);
+            if (filtro.LivroId.HasValue)
+                query = query.Where(c => c.LivroId == filtro.LivroId.Value);
 
             return await query.ToListAsync(cancellationToken);
         }

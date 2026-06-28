@@ -8,7 +8,7 @@ namespace bookfly.Api.Controllers.MembrosComunidade
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MembrosComunidade(IMembroComunidadeAppService membroComunidadeAppService) : ControllerBase
+    public class MembrosComunidadeController(IMembroComunidadeAppService membroComunidadeAppService) : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
