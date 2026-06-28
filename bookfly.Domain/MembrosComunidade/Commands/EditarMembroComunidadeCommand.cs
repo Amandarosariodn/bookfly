@@ -4,7 +4,7 @@ namespace bookfly.Domain.MembrosComunidade.Commands
 {
     public class EditarMembroComunidadeCommand
     {
-           public virtual int CargoId { get; protected set; }
-        public virtual bool Banido { get; protected set; }
+           public  int CargoId { get;  set; }
+        public  bool Banido { get;  set; }
     }
 }
