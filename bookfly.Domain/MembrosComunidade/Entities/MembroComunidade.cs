@@ -12,13 +12,14 @@ namespace bookfly.Domain.MembrosComunidade.Entities
 
         protected MembroComunidade() { }
 
-        public MembroComunidade(int comunidadeId, int usuarioId, int cargoId, bool banido, DateTime entrouEm)
+        public MembroComunidade(int comunidadeId, int usuarioId, int cargoId, bool banido)
         {
             SetComunidadeId(comunidadeId);
             SetUsuarioId(usuarioId);
             SetCargoId(cargoId);
             SetBanido(banido);
-            SetEntrouEm(entrouEm);
+            
+            EntrouEm = DateTime.Now;
         }
 
         public virtual void SetComunidadeId(int comunidadeId)
