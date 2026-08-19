@@ -1,4 +1,4 @@
-
+using bookfly.Domain.Exceptions;
 
 namespace bookfly.Domain.Avaliacoes.Entities
 {
@@ -25,13 +25,11 @@ namespace bookfly.Domain.Avaliacoes.Entities
             SetContemSpoiler(contemSpoiler);
             SetCriadoEm(criadoEm);
         }
-            
-        
 
         public virtual void SetUsuarioId(int usuarioId)
         {
             if (usuarioId <= 0)
-                throw new Exception("UsuarioId deve ser maior que zero.");
+                throw new AtributoInvalidoException(nameof(UsuarioId));
 
             UsuarioId = usuarioId;
         }
@@ -39,7 +37,7 @@ namespace bookfly.Domain.Avaliacoes.Entities
         public virtual void SetLivroId(int livroId)
         {
             if (livroId <= 0)
-                throw new Exception("LivroId deve ser maior que zero.");
+                throw new AtributoInvalidoException(nameof(LivroId));
 
             LivroId = livroId;
         }
@@ -47,8 +45,7 @@ namespace bookfly.Domain.Avaliacoes.Entities
         public virtual void SetNota(int nota)
         {
             if (nota < 1 || nota > 5)
-                throw new Exception("Nota deve ser entre 1 e 5.");
-
+                throw new TamanhoInvalidoException(nameof(Nota), 1, 5);
             Nota = nota;
         }
 
@@ -66,7 +63,6 @@ namespace bookfly.Domain.Avaliacoes.Entities
         {
             CriadoEm = criadoEm;
         }
-
 
     }
 }
