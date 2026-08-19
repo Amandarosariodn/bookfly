@@ -12,16 +12,18 @@ namespace bookfly.Domain.CargosComunidade.Entities
         public virtual bool PodeBanir { get; protected set; }
         public virtual bool PodeFixarPost { get; protected set; }
         public virtual DateTime CriadoEm { get; protected set; }
+        public virtual bool CargoPadrao { get; protected set; }
 
         protected CargoComunidade() { }
 
-        public CargoComunidade(int comunidadeId, string nome, bool podeDeletar, bool podeBanir, bool podeFixarPost)
+        public CargoComunidade(int comunidadeId, string nome, bool podeDeletar, bool podeBanir, bool podeFixarPost, bool cargoPadrao)
         {
             SetComunidadeId(comunidadeId);
             SetNome(nome);
             SetPodeDeletar(podeDeletar);
             SetPodeBanir(podeBanir);
             SetPodeFixarPost(podeFixarPost);
+            SetCargoPadrao(cargoPadrao);
             CriadoEm = DateTime.UtcNow;
         }
 
@@ -53,7 +55,11 @@ namespace bookfly.Domain.CargosComunidade.Entities
         {
             PodeFixarPost = podeFixarPost;
         }
-
+        public virtual void SetCargoPadrao(bool cargoPadrao)
+        {
+            CargoPadrao = cargoPadrao;
+        }
+        
         public virtual void SetCriadoEM(DateTime criadoEm)
         {
             if (criadoEm > DateTime.UtcNow)

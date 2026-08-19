@@ -5,7 +5,7 @@ using bookfly.Domain.MembrosComunidade.Repositories.Filters;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace bookfly.Infra.MembrosComunidade
+namespace bookfly.Infra.MembrosComunidade.Repositories
 {
     public class MembroComunidadeRepository(ISession session) : IMembrosComunidadeRepository
     {

@@ -10,11 +10,11 @@ namespace bookfly.Infra.Categorias.Mappings
         {
             Table("categoria");
 
-            Id(Categoria => Categoria.Id).Column("ID").GeneratedBy.Identity();
-            Map(Categoria => Categoria.Nome).Column("NOME").Not.Nullable();
+            Id(Categoria => Categoria.Id).Column("id").GeneratedBy.Identity();
+            Map(Categoria => Categoria.Nome).Column("nome").Not.Nullable();
             Map(categoria => categoria.Descricao).Column("descricao").Nullable();
             Map(categoria => categoria.UrlImagem).Column("url_imagem").Nullable();
-            Map(categoria => categoria.Situacao).Column("ativo_inativo").CustomType<bool>().Nullable();
+            Map(categoria => categoria.Situacao).Column("situacao").CustomType<bool>().Not.Nullable();
         }
     }
 } 

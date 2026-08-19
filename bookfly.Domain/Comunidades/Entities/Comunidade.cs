@@ -13,7 +13,7 @@ namespace bookfly.Domain.Comunidades.Entities
         public virtual GeneroComunidadeEnum Genero {get;protected set;}
         public virtual string UrlImagem { get; protected set; }
         public virtual bool Privado { get; protected set; }
-        public virtual bool Ativo { get; protected set; }
+        public virtual bool Situacao { get; protected set; }
         public virtual DateTime DataCriacao { get; protected set; }
         
         protected Comunidade() { }
@@ -82,9 +82,9 @@ namespace bookfly.Domain.Comunidades.Entities
             Privado = privado;
         }
 
-        public virtual void SetAtivo(bool ativo)
+        public virtual void SetSituacao(bool situacao)
         {
-            Ativo = ativo;
+            Situacao = situacao;
         }
 
         public virtual void SetDataCriacao(DateTime dataCriacao)
@@ -96,7 +96,7 @@ namespace bookfly.Domain.Comunidades.Entities
 
         public virtual void Ativar()
         {
-            Ativo = true;
+            Situacao = true;
         }
     }
 }

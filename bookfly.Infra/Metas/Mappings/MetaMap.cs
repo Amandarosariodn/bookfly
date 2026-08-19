@@ -13,13 +13,14 @@ namespace bookfly.Infra.Metas.Mappings
         {
             Table("meta");
 
-            Id(meta => meta.Id).Column("ID").GeneratedBy.Identity();
-            Map(meta => meta.UsuarioId).Column("usuario_id").Nullable();
-            Map(meta => meta.Nome).Column("nome").Nullable();
+            Id(meta => meta.Id).Column("id").GeneratedBy.Identity();
+            References(meta => meta.UsuarioId).Column("usuario_id").Not.Nullable();
+            Map(meta => meta.Nome).Column("nome").Not.Nullable();
             Map(meta => meta.Descricao).Column("descricao").Nullable();
-            Map(meta => meta.QuantidadeMeta).Column("quantidade_meta").Nullable();
+            Map(meta => meta.QuantidadeMeta).Column("quantidade_meta").Not.Nullable();
             Map(meta => meta.QuantidadeAtual).Column("quantidade_atual").Nullable();
-            Map(meta => meta.Ano).Column("ano").Nullable();
+            Map(meta => meta.Ano).Column("ano").Not.Nullable();
+            Map(meta => meta.CriadoEm).Column("criado_em").CustomType<DateTime>().Not.Nullable();
         }
     }
 }

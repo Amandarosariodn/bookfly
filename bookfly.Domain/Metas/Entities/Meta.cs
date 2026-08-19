@@ -11,13 +11,14 @@ namespace bookfly.Domain.Metas.Entities
         public virtual int QuantidadeMeta { get; protected set; }
         public virtual int QuantidadeAtual { get; protected set; }
         public virtual int Ano { get; protected set; }
+        public virtual DateTime CriadoEm { get; protected set; }
 
         protected Meta()
         {
             
         }
 
-        public Meta(int usuarioId,string nome, string descricao, int quantidadeMeta, int quantidadeAtual, int ano)
+        public Meta(int usuarioId,string nome, string descricao, int quantidadeMeta, int quantidadeAtual, int ano, DateTime criadoEm)
         {
             SetUsuarioId(usuarioId);
             SetNome(nome);
@@ -25,6 +26,7 @@ namespace bookfly.Domain.Metas.Entities
             SetQuantidadeMeta(quantidadeMeta);
             SetQuantidadeAtual(quantidadeAtual);
             SetAno(ano);
+            SetCriadoEm(criadoEm);
         }
 
         public virtual void SetUsuarioId(int usuarioId)
@@ -73,6 +75,14 @@ namespace bookfly.Domain.Metas.Entities
                 throw new ArgumentException("O ano não pode ser negativo.", nameof(ano));
             
             Ano = ano;
+        }
+
+        public virtual void SetCriadoEm(DateTime criadoEm)
+        {
+            if(criadoEm > DateTime.Now)
+                throw new Exception("Data inválida");
+
+            CriadoEm = criadoEm;
         }
 
 

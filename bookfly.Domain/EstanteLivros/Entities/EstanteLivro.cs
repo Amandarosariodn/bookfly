@@ -9,7 +9,7 @@ namespace bookfly.Domain.EstanteLivros.Entities
         public virtual int Id { get; protected set; }
         public virtual Estante Estante { get; protected set; }
         public virtual Livro Livro { get; protected set; }
-        public virtual bool Ativo { get; protected set; }
+        public virtual bool Situacao { get; protected set; }
         public virtual StatusLeituraEnum StatusLeitura  { get; protected set; }
         public virtual int PaginaAtual { get; protected set; }
         public virtual bool Favorito { get; protected set; }
@@ -21,11 +21,11 @@ namespace bookfly.Domain.EstanteLivros.Entities
         {
         }
 
-        public EstanteLivro(Estante estante, Livro livro, bool ativo, StatusLeituraEnum statusLeitura, int paginaAtual, bool favorito, DateTime iniciadoEm, DateTime? finalizadoEm)
+        public EstanteLivro(Estante estante, Livro livro, bool situacao, StatusLeituraEnum statusLeitura, int paginaAtual, bool favorito, DateTime iniciadoEm, DateTime? finalizadoEm)
         {
             SetEstante(estante);
             SetLivro(livro);
-            SetAtivo(ativo);
+            SetSituacao(situacao);
             SetStatusLeitura(statusLeitura);
             SetPaginaAtual(paginaAtual);
             SetFavorito(favorito);
@@ -52,9 +52,9 @@ namespace bookfly.Domain.EstanteLivros.Entities
             Livro = livro;
         }
 
-        public virtual void SetAtivo(bool ativo)
+        public virtual void SetSituacao(bool situacao)
         {
-            Ativo = ativo;
+            Situacao = situacao;
         }
 
         public virtual void SetStatusLeitura(StatusLeituraEnum statusLeitura)

@@ -9,13 +9,12 @@
             public EstanteMap()
             {
                 Table("estante");
-                Id(Estante => Estante.Id).Column("id").GeneratedBy.Identity();
-                References(Estante => Estante.UsuarioId).Column("usuario_id").Not.Nullable();
-                Map(Estante => Estante.Nome).Column("nome");
-                Map(Estante => Estante.Descricao).Column("descricao").Nullable();
-                Map(Estante => Estante.Privada).Column("privada").CustomType<bool>().Nullable();
-                Map(Estante => Estante.CriadoEm).Column("criado_em").CustomType<DateTime>().Nullable();
-
+                Id(estante => estante.Id).Column("id").GeneratedBy.Identity();
+                References(estante => estante.UsuarioId).Column("usuario_id").Not.Nullable();
+                Map(estante => estante.Nome).Column("nome").Not.Nullable();
+                Map(estante => estante.Descricao).Column("descricao").Nullable();
+                Map(estante => estante.Privada).Column("privada").CustomType<bool>().Not.Nullable();
+                Map(estante => estante.CriadoEm).Column("criado_em").CustomType<DateTime>().Not.Nullable();
             }
         }
     }

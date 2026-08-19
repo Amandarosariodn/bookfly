@@ -4,7 +4,7 @@ using bookfly.Domain.Comunidades.Repositories.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace bookfly.Infra.Comunidades
+namespace bookfly.Infra.Comunidades.Repositories
 {
     public class ComunidadeRepository(ISession session) : IComunidadeRepository
     {
